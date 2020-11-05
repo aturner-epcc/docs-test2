@@ -1,35 +1,17 @@
 # Software environment
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 The software environment on ARCHER2 is primarily controlled through the
 `module` command. By loading and switching software modules you control
 which software and versions are available to you.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-A module is a self-contained description of a software package -- it
-contains the settings required to run a software package and, usually,
-encodes required dependencies on other software packages.
-
-</div>
+!!! information
+    A module is a self-contained description of a software package -- it
+    contains the settings required to run a software package and, usually,
+    encodes required dependencies on other software packages.
 
 By default, all users on ARCHER2 start with the default software
 environment loaded.
@@ -40,40 +22,36 @@ Service Provision, and Computational Science and Engineering services.
 
 In this section, we provide:
 
->   - A brief overview of the `module` command
->   - A brief description of how the `module` command manipulates your
->     environment
+   - A brief overview of the `module` command
+   - A brief description of how the `module` command manipulates your
+     environment
 
 ## Using the `module` command
-
-<div class="seealso">
 
 We only cover basic usage of the `module` command here. For full
 documentation please see the [Linux manual page on
 modules](http://linux.die.net/man/1/module)
 
-</div>
-
 The `module` command takes a subcommand to indicate what operation you
 wish to perform. Common subcommands are:
 
->   - `module list [name]` - List modules currently loaded in your
->     environment, optionally filtered by `[name]`
->   - `module avail [name]` - List modules available, optionally
->     filtered by `[name]`
->   - `module savelist` - List module collections available (usually
->     used for accessing different programming environments)
->   - `module restore name` - Restore the module collection called
->     `name` (usually used for setting up a programming environment)
->   - `module load name` - Load the module called `name` into your
->     environment
->   - `module remove name` - Remove the module called `name` from your
->     environment
->   - `module swap old new` - Swap module `new` for module `old` in your
->     environment
->   - `module help name` - Show help information on module `name`
->   - `module show name` - List what module `name` actually does to your
->     environment
+   - `module list [name]` - List modules currently loaded in your
+     environment, optionally filtered by `[name]`
+   - `module avail [name]` - List modules available, optionally
+     filtered by `[name]`
+   - `module savelist` - List module collections available (usually
+     used for accessing different programming environments)
+   - `module restore name` - Restore the module collection called
+     `name` (usually used for setting up a programming environment)
+   - `module load name` - Load the module called `name` into your
+     environment
+   - `module remove name` - Remove the module called `name` from your
+     environment
+   - `module swap old new` - Swap module `new` for module `old` in your
+     environment
+   - `module help name` - Show help information on module `name`
+   - `module show name` - List what module `name` actually does to your
+     environment
 
 These are described in more detail below.
 
@@ -82,7 +60,7 @@ These are described in more detail below.
 The `module list` command will give the names of the modules and their
 versions you have presently loaded in your environment:
 
-``` sourceCode console
+```
 auser@uan01:~> module list
 Currently Loaded Modulefiles:
 1) cpe-aocc                          7) cray-dsmml/0.1.2(default)
@@ -97,7 +75,7 @@ Finding out which software modules are available on the system is
 performed using the `module avail` command. To list all software modules
 available, use:
 
-``` sourceCode console
+```
 auser@uan01:~> module avail
 ------------------------------- /opt/cray/pe/perftools/20.09.0/modulefiles --------------------------------
 perftools       perftools-lite-events  perftools-lite-hbm    perftools-nwpc     
@@ -144,7 +122,7 @@ You can list all the modules of a particular type by providing an
 argument to the `module avail` command. For example, to list all
 available versions of the HPE Cray FFTW library, use:
 
-``` sourceCode console
+```
 auser@uan01:~> module avail cray-fftw
 
 ---------------------------------------- /opt/cray/pe/modulefiles -----------------------------------------
@@ -154,7 +132,7 @@ cray-fftw/3.3.8.7(default)
 If you want more info on any of the modules, you can use the `module
 help` command:
 
-``` sourceCode console
+```
 auser@uan01:~> module help cray-fftw
 
 -------------------------------------------------------------------
@@ -186,7 +164,7 @@ performs to change your environment when it is loaded. We provide a
 brief overview of what the significance of these different settings mean
 below. For example, for the default FFTW module:
 
-``` sourceCode console
+```
 auser@uan01:~> module show cray-fftw
 -------------------------------------------------------------------
 /opt/cray/pe/modulefiles/cray-fftw/3.3.8.7:
@@ -227,7 +205,7 @@ module-whatis   {FFTW 3.3.8.7 - Fastest Fourier Transform in the West}
 To load a module to use the `module load` command. For example, to load
 the default version of HPE Cray FFTW into your environment, use:
 
-``` sourceCode console
+```
 auser@uan01:~> module load cray-fftw
 ```
 
@@ -236,7 +214,7 @@ Cray FFTW library. The above command will load the default version of
 HPE Cray FFTW. If you need a specific version of the software, you can
 add more information:
 
-``` sourceCode console
+```
 auser@uan01:~> module load cray-fftw/3.3.8.7
 ```
 
@@ -246,7 +224,7 @@ regardless of the default.
 If you want to remove software from your environment, `module remove`
 will remove a loaded module:
 
-``` sourceCode console
+```
 auser@uan01:~> module remove cray-fftw
 ```
 
@@ -257,12 +235,12 @@ There are many situations in which you might want to change the
 presently loaded version to a different one, such as trying the latest
 version which is not yet the default or using a legacy version to keep
 compatibility with old data. This can be achieved most easily by using
-"module swap oldmodule newmodule".
+`module swap oldmodule newmodule`.
 
 Suppose you have loaded version 3.3.8.7 of `cray-fftw`, the following
 command will change to version 3.3.8.5:
 
-``` sourceCode console
+```
 auser@uan01:~> module swap cray-fftw cray-fftw/3.3.8.5
 ```
 
@@ -277,17 +255,17 @@ The three programming environments `PrgEnv-aocc`, `PrgEnv-cray`,
 change programming environment, that is, change the collection of
 modules, is therefore via `module restore`. For example:
 
-``` sourceCode console
+```
 auser@uan01:~> module restore PrgEnv-gnu
 ```
 
-Note there is only one argument, which is the collection to be restored.
+!!! note there is only one argument, which is the collection to be restored.
 The command `module restore` will output a list of modules in the
 outgoing collection as they are unloaded, and the modules in the
 incoming collection as they are loaded. If you prefer not to have
 messages
 
-``` sourceCode console
+```
 auser@uan1:~> module -s restore PrgEnv-gnu
 ```
 
@@ -300,7 +278,7 @@ the back end, `module restore` may fail for batch jobs. In this case, it
 is possible to restore one of the three standard programming
 environments via, e.g.,
 
-``` sourceCode console
+```
 module restore /etc/cray-pe.d/PrgEnv-gnu
 ```
 
@@ -311,25 +289,16 @@ to compile a piece of code or execute a piece of software. This is saved
 as a module collection. You can save a collection from your current
 environment by executing:
 
-``` sourceCode console
+```
 auser@uan01:~> module save [collection_name]
 ```
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you do not specify the environment name, it is called `default`.
-
-</div>
+!!! note
+    If you do not specify the environment name, it is called `default`.
 
 You can find the list of saved module environments by executing:
 
-``` sourceCode console
+```
 auser@uan01:~> module savelist
 Named collection list:
  1) default   2) PrgEnv-aocc   3) PrgEnv-cray   4) PrgEnv-gnu 
@@ -337,7 +306,7 @@ Named collection list:
 
 To list the modules in a collection, you can execute, e.g.,:
 
-``` sourceCode console
+```
 auser@uan01:~> module saveshow PrgEnv-gnu
 -------------------------------------------------------------------
 /home/t01/t01/auser/.module/default:
@@ -367,7 +336,7 @@ Note again that the details of the collection have been saved to the
 home directory (the first line of output above). It is possible to save
 a module collection with a fully qualified path, e.g.,
 
-``` sourceCode console
+```
 auser@uan1:~> module save /work/t01/z01/auser/.module/PrgEnv-gnu
 ```
 
@@ -375,7 +344,7 @@ which would make it available from the batch system.
 
 To delete a module environment, you can execute:
 
-``` sourceCode console
+```
 auser@uan01:~> module saverm <environment_name>
 ```
 
@@ -391,7 +360,7 @@ define the number of threads.
 
 To define an environment variable, you need to execute:
 
-``` sourceCode console
+```
 export OMP_NUM_THREADS=4
 ```
 
@@ -402,13 +371,13 @@ string in double quotation marks.
 You can show the value of a specific environment variable if you print
 it:
 
-``` sourceCode console
+```
 echo $OMP_NUM_THREADS
 ```
 
 Do not forget the dollar symbol. To remove an environment variable, just
 execute:
 
-``` sourceCode console
+```
 unset OMP_NUM_THREADS
 ```
