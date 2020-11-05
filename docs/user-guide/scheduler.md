@@ -262,9 +262,7 @@ knock-on effect on the behaviour of module collections, which the module
 system expects to find in a user's home directory. In order that the
 module system work correctly, batch scripts should contain
 
-``` sourceCode console
-module load epcc-job-env
-```
+    module load epcc-job-env
 
 **as the first module command in the script** to ensure that the
 environment is set correctly for the job. This will also ensure all
