@@ -1,20 +1,12 @@
 # Quickstart for developers
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!!warning
+  The ARCHER2 Service is not yet available. This documentation is in
+  development.
 
 This guide aims to quickly enable developers to work on ARCHER2. It
-assumes that you are familiar with the material in `quickstart-users`.
+assumes that you are familiar with the material in the
+[Quickstart for users](quickstart-users.md) section.
 
 ## Compiler wrappers
 
@@ -35,11 +27,11 @@ line, in build scripts, or in configure options. It could be helpful to
 set some or all of the following environment variables before running a
 build to ensure that the build tool is aware of the wrappers:
 
-    export CC=cc
-    export CXX=CC
-    export FC=ftn
-    export F77=ftn
-    export F90=ftn
+  export CC=cc
+  export CXX=CC
+  export FC=ftn
+  export F77=ftn
+  export F90=ftn
 
 `man` pages are available for each wrapper. You can also see the full
 set of compiler and linker options being used by passing the
@@ -78,19 +70,10 @@ gcc/9.3.0`. At this point you may invoke the compiler wrappers and they
 will correctly use Cray's libraries and tools in conjunction with GCC
 9.3.0.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The `gcc/8.3.0` module is available on ARCHER2 but cannot be used as the
-supporting scientific and system libraries are not available. You should
-**not** use this version of GCC.
-
-</div>
+!!!warning
+  The `gcc/8.3.0` module is available on ARCHER2 but cannot be used as the
+  supporting scientific and system libraries are not available. You should
+  **not** use this version of GCC.
 
 When choosing the programming environment, a big factor will likely be
 which compilers you have previously used for your code's development.
@@ -100,17 +83,8 @@ are new versions that are now derived from Clang. The GCC suite provides
 gcc/g++ and gfortran. The AOCC suite provides AMD Clang/Clang++ and AMD
 Flang.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-The Intel compilers are not available on ARCHER2.
-
-</div>
+!!!note 
+  The Intel compilers are not available on ARCHER2.
 
 ## Useful compiler options
 
@@ -124,19 +98,10 @@ flags should be a good starting point for reasonable performance:
 | Cray Fortran | Default options                                   |
 | GCC          | `-O2 -ftree-vectorize -funroll-loops -ffast-math` |
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-If you want to use GCC version 10 or greater to compile Fortran code,
-you **must** add the `-fallow-argument-mismatch` option when compiling
-otherwise you will see compile errors associated with MPI functions.
-
-</div>
+!!!tip
+  If you want to use GCC version 10 or greater to compile Fortran code,
+  you **must** add the `-fallow-argument-mismatch` option when compiling
+  otherwise you will see compile errors associated with MPI functions.
 
 When you are happy with your code's performance you may wish to enable
 more aggressive optimisations; in this case you could start using the
@@ -172,17 +137,8 @@ pages to read are accessed as follow:
 | Cray           | `man craycc` | `man crayCC` | `man crayftn`  |
 | GNU            | `man gcc`    | `man g++`    | `man gfortran` |
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-There are no `man` pages for the AOCC compilers at the moment.
-
-</div>
+!!!tip
+  There are no `man` pages for the AOCC compilers at the moment.
 
 ## Linking on ARCHER2
 
@@ -230,8 +186,8 @@ specified with flags of the type `-l<library-name>`.
 
 The following debugging tools are available on ARCHER2:
 
-  - **gdb4hpc** is a command-line tool working similarly to [gdb
-    \<https://www.gnu.org/software/gdb/\>]() that allows users to debug
+  - **gdb4hpc** is a command-line tool working similarly to
+  - [gdb](https://www.gnu.org/software/gdb/) that allows users to debug
     parallel programs. It can launch parallel programs or attach to ones
     already running and allows the user to step through the execution to
     identify the causes of any unexpected behaviour. Available via
@@ -244,13 +200,6 @@ The following debugging tools are available on ARCHER2:
   - **STAT**, the Stack Trace Analysis Tool, generates merged stack
     traces for parallel applications. It also provides visualisation
     tools. Available via `module load cray-stat`.
-
-<!-- end list -->
-
-  - \* **ATP**, Abnormal Termiation Processing, offers scalable core
-    file and  
-    backtrace analysis when parallel programs crash. Output can be
-    viewed with STAT. Available via `module load atp`.
 
 To get started debugging on ARCHER2, you might like to use gdb4hpc. You
 should first of all compile your code using the `-g` flag to enable
@@ -277,18 +226,9 @@ For more information on debugging parallel codes, see the documentation
 at `ARCHER2 User and Best Practice Guide - Debugging
 <../user-guide/debug>`.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-We will add more information on using the debugging tools once the
-ARCHER2 system is available.
-
-</div>
+!!!note
+  We will add more information on using the debugging tools once the
+  ARCHER2 system is available.
 
 ## Profiling tools
 
@@ -331,8 +271,8 @@ to view the results. In this example,
     pat_report -O calltree+src my_prog+74653-2s
 
 will produce a report containing the call tree. You can view available
-report keywords to be provided to the `-O` option by running `pat_report
--O -h`. The available `perftools-lite` modules are:
+report keywords to be provided to the `-O` option by running `pat_report -O -h`.
+The available `perftools-lite` modules are:
 
   - `perftools-lite`, instrumenting a basic sampling experiment.
   - `perftools-lite-events`, instrumenting a tracing experiment.
@@ -342,28 +282,19 @@ report keywords to be provided to the `-O` option by running `pat_report
   - `perftools-lite-loops`, instrumenting a loop work estimate
     experiment.
 
+!!!tip
 For more information on profiling parallel codes, see the documentation
-at `ARCHER2 User and Best Practice Guide - Profiling
-<../user-guide/profile>`.
+at [ARCHER2 User and Best Practice Guide - Profiling](../user-guide/profile.md).
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-We will add more information on using the profiling tools once the
-ARCHER2 system is available.
-
-</div>
+!!!note
+  We will add more information on using the profiling tools once the
+  ARCHER2 system is available.
 
 ## Useful Links
 
 Links to other documentation you may find useful:
 
-  - `ARCHER2 User and Best Practice Guide <../user-guide/overview>` -
+  - [ARCHER2 User and Best Practice Guide](../user-guide/overview.md) -
     Covers all aspects of use of the ARCHER2 service. This includes
     fundamentals (required by all users to use the system effectively),
     best practice for getting the most out of ARCHER2, and more advanced
