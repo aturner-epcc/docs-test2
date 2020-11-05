@@ -1,17 +1,8 @@
 # Running jobs on ARCHER2
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 As with most HPC services, ARCHER2 uses a scheduler to manage access to
 resources and ensure that the thousands of different users of system are
@@ -25,18 +16,9 @@ explanations) for the most common job types are provided below.
 Interactive jobs are also available and can be particularly useful for
 developing and debugging applications. More details are available below.
 
-<div class="hint">
-
-<div class="admonition-title">
-
-Hint
-
-</div>
-
-If you have any questions on how to run jobs on ARCHER2 do not hesitate
-to contact the [ARCHER2 Service Desk](mailto:support@archer2.ac.uk).
-
-</div>
+!!! hint
+    If you have any questions on how to run jobs on ARCHER2 do not hesitate
+    to contact the [ARCHER2 Service Desk](mailto:support@archer2.ac.uk).
 
 You typically interact with Slurm by issuing Slurm commands from the
 login nodes (to submit, check and cancel jobs), and by specifying Slurm
@@ -75,7 +57,7 @@ resources and partitions, e.g.
 
 Here we see the number of nodes in different states. For example, 683
 nodes are allocated (running jobs), and 214 are idle (available to run
-jobs). Note that long lists of node IDs have been abbreviated with
+jobs). !!! note that long lists of node IDs have been abbreviated with
 `...`.
 
 ### `sbatch`: submitting jobs
@@ -132,41 +114,22 @@ separate attributes.
 
 The *primary resource* you can request for your job is the compute node.
 
-<div class="note">
+!!! information
+    The `--exclusive` option is enforced on ARCHER2 which means you will
+    always have access to all of the memory on the compute node regardless
+    of how many processes are actually running on the node.
 
-<div class="admonition-title">
-
-Note
-
-</div>
-
-The `--exclusive` option is enforced on ARCHER2 which means you will
-always have access to all of the memory on the compute node regardless
-of how many processes are actually running on the node.
-
-</div>
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-You will not generally have access to the full amount of memory resource
-on the the node as some is retained for running the operating system and
-other system processes.
-
-</div>
+!!! note
+    You will not generally have access to the full amount of memory resource
+    on the the node as some is retained for running the operating system and
+    other system processes.
 
 ### Partitions
 
 On ARCHER2, compute nodes are grouped into partitions. You will have to
 specify a partition using the `--partition` option in your Slurm
 submission script. The following table has a list of active partitions
-on
-ARCHER2.
+on ARCHER2.
 
 | Partition | Description                                                 | Max nodes available |
 | --------- | ----------------------------------------------------------- | ------------------- |
@@ -175,7 +138,7 @@ ARCHER2.
 
 ARCHER2 Partitions
 
-You can list the active partitions by running `sinfo`. Note, you may not
+You can list the active partitions by running `sinfo`. !!! note, you may not
 have access to all the available partitions.
 
 ### Quality of Service (QoS)
@@ -203,52 +166,25 @@ command:
 
     sacctmgr show assoc user=$USER cluster=archer2-es format=cluster,account,user,qos%50
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you have needs which do not fit within the current QoS, please
-[contact the Service
-Desk](https://www.archer2.ac.uk/support-access/servicedesk.html) and we
-can discuss how to accommodate your requirements.
-
-</div>
+!!! hint
+    If you have needs which do not fit within the current QoS, please
+    [contact the Service
+    Desk](https://www.archer2.ac.uk/support-access/servicedesk.html) and we
+    can discuss how to accommodate your requirements.
 
 ## Troubleshooting
 
 ### Slurm error messages
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-More information on common error messages will be added when the ARCHER2
-system is available.
-
-</div>
+!!! note
+    More information on common error messages will be added when the ARCHER2
+    system is available.
 
 ### Slurm queued reasons
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Explanations of the reasons for jobs being queued and not running will
-be added when the ARCHER2 system is available.
-
-</div>
+!!! note
+    Explanations of the reasons for jobs being queued and not running will
+    be added when the ARCHER2 system is available.
 
 ## Output from Slurm jobs
 
@@ -256,97 +192,64 @@ Slurm places standard output (STDOUT) and standard error (STDERR) for
 each job in the file `slurm_<JobID>.out`. This file appears in the job's
 working directory once your job starts running.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-This file is plain text and can contain useful information to help
-debugging if a job is not working as expected. The ARCHER2 Service Desk
-team will often ask you to provide the contents of this file if oyu
-contact them for help with issues.
-
-</div>
-
 ## Specifying resources in job scripts
 
 You specify the resources you require for your job using directives at
 the top of your job submission script using lines that start with the
 directive `#SBATCH`.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Options provided using `#SBATCH` directives can also be specified as
-command line options to `srun`.
-
-</div>
+!!! hint
+    Options provided using `#SBATCH` directives can also be specified as
+    command line options to `srun`.
 
 If you do not specify any options, then the default for each option will
 be applied. As a minimum, all job submissions must specify the budget
 that they wish to charge the job too with the option:
 
->   - `--account=<budgetID>` your budget ID is usually something like
->     `t01` or `t01-test`. You can see which budget codes you can charge
->     to in SAFE.
+   - `--account=<budgetID>` your budget ID is usually something like
+     `t01` or `t01-test`. You can see which budget codes you can charge
+     to in SAFE.
 
 Other common options that are used are:
 
->   - `--time=<hh:mm:ss>` the maximum walltime for your job. *e.g.* For
->     a 6.5 hour walltime, you would use `--time=6:30:0`.
->   - `--job-name=<jobname>` set a name for the job to help identify it
->     in
+   - `--time=<hh:mm:ss>` the maximum walltime for your job. *e.g.* For
+     a 6.5 hour walltime, you would use `--time=6:30:0`.
+   - `--job-name=<jobname>` set a name for the job to help identify it
+     in
 
 In addition, parallel jobs will also need to specify how many nodes,
 parallel processes and threads they require.
 
->   - `--nodes=<nodes>` the number of nodes to use for the job.
->   - `--tasks-per-node=<processes per node>` the number of parallel
->     processes (e.g. MPI ranks) per node.
->   - `--cpus-per-task=1` if you are using parallel processes only with
->     no threading then you should set the number of CPUs (cores) per
->     parallel process to 1. **Note:** if you are using threading (e.g.
->     with OpenMP) then you will need to change this option as described
->     below.
+   - `--nodes=<nodes>` the number of nodes to use for the job.
+   - `--tasks-per-node=<processes per node>` the number of parallel
+     processes (e.g. MPI ranks) per node.
+   - `--cpus-per-task=1` if you are using parallel processes only with
+     no threading then you should set the number of CPUs (cores) per
+     parallel process to 1. **!!! note:** if you are using threading (e.g.
+     with OpenMP) then you will need to change this option as described
+     below.
 
 For parallel jobs that use threading (e.g. OpenMP), you will also need
 to change the `--cpus-per-task` option.
 
->   - `--cpus-per-task=<threads per task>` the number of threads per
->     parallel process (e.g. number of OpenMP threads per MPI task for
->     hybrid MPI/OpenMP jobs). **Note:** you must also set the
->     `OMP_NUM_THREADS` environment variable if using OpenMP in your
->     job.
+   - `--cpus-per-task=<threads per task>` the number of threads per
+     parallel process (e.g. number of OpenMP threads per MPI task for
+     hybrid MPI/OpenMP jobs). **!!! note:** you must also set the
+     `OMP_NUM_THREADS` environment variable if using OpenMP in your
+     job.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-For parallel jobs, ARCHER2 operates in a *node exclusive* way. This
-means that you are assigned resources in the units of full compute nodes
-for your jobs (*i.e.* 128 cores) and that no other user can share those
-compute nodes with you. Hence, the minimum amount of resource you can
-request for a parallel job is 1 node (or 128 cores).
-
-</div>
+!!! note
+    For parallel jobs, ARCHER2 operates in a *node exclusive* way. This
+    means that you are assigned resources in the units of full compute nodes
+    for your jobs (*i.e.* 128 cores) and that no other user can share those
+    compute nodes with you. Hence, the minimum amount of resource you can
+    request for a parallel job is 1 node (or 128 cores).
 
 To prevent the behaviour of batch scripts being dependent on the user
 environment at the point of submission, the option
 
->   - `--export=none` prevents the user environment from being exported
->     to the batch system.
+   - `--export=none` prevents the user environment from being exported
+     to the batch system.
 
 Using the `--export=none` means that the behaviour of batch submissions
 should be repeatable. We strongly recommend its use.
@@ -365,7 +268,7 @@ module load epcc-job-env
 
 **as the first module command in the script** to ensure that the
 environment is set correctly for the job. This will also ensure all
-relevant library paths are set correctly at run time. Note `module -s`
+relevant library paths are set correctly at run time. !!! note `module -s`
 can be used to suppress the associated messages if desired.
 
 ## `srun`: Launching parallel jobs
@@ -374,20 +277,10 @@ If you are running parallel jobs, your job submission script should
 contain one or more `srun` commands to launch the parallel executable
 across the compute nodes.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-To ensure that processes and threads are correctly mapped (or *pinned*)
-to cores, you should always specify
-<span class="title-ref">--cpu-bind=cores</span> option to
-<span class="title-ref">srun</span>.
-
-</div>
+!!! warning
+    To ensure that processes and threads are correctly mapped (or *pinned*)
+    to cores, you should always specify
+    `--cpu-bind=cores` option to `srun`.
 
 ## bolt: Job submission script creation tool
 
@@ -398,19 +291,10 @@ generate a job submission script that uses ARCHER2 in a reasonable way.
 
 MPI, OpenMP and hybrid MPI/OpenMP jobs are supported.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The tool will allow you to generate scripts for jobs that use the `long`
-QoS but you will need to manually modify the resulting script to change
-the QoS to `long`.
-
-</div>
+!!! warning
+    The tool will allow you to generate scripts for jobs that use the `long`
+    QoS but you will need to manually modify the resulting script to change
+    the QoS to `long`.
 
 If there are problems or errors in your job parameter specifications
 then bolt will print warnings or errors. However, bolt cannot detect all
@@ -418,16 +302,14 @@ problems.
 
 ### Basic Usage
 
-The basic syntax for using bolt
-    is:
+The basic syntax for using bolt is:
 
     bolt -n [parallel tasks] -N [parallel tasks per node] -d [number of threads per task] \
          -t [wallclock time (h:m:s)] -o [script name] -j [job name] -A [project code]  [arguments...]
 
 Example 1: to generate a job script to run an executable called
 `my_prog.x` for 24 hours using 8192 parallel (MPI) processes and 128
-(MPI) processes per compute node you would use something
-    like:
+(MPI) processes per compute node you would use something like:
 
     bolt -n 8192 -N 128 -t 24:0:0 -o my_job.bolt -j my_job -A z01-budget my_prog.x arg1 arg2
 
@@ -436,8 +318,7 @@ Example 1: to generate a job script to run an executable called
 Example 2: to generate a job script to run an executable called
 `my_prog.x` for 3 hours using 2048 parallel (MPI) processes and 64 (MPI)
 processes per compute node (i.e. using half of the cores on a compute
-node), you would
-    use:
+node), you would use:
 
     bolt -n 2048 -N 64 -t 3:0:0 -o my_job.bolt -j my_job -A z01-budget my_prog.x arg1 arg2
 
@@ -449,58 +330,22 @@ as follows:
 
     sbatch my_job.bolt
 
-<div class="note">
+!!! hint
+    If you do not specify the script name with the '-o' option then your
+    script will be a file called `a.bolt`.
 
-<div class="admonition-title">
+!!! hint
+    If you do not specify the number of parallel tasks then bolt will try to
+    generate a serial job submission script (and throw an error on the
+    ARCHER2 4 cabinet system as serial jobs are not supported).
 
-Note
+!!! hint
+    If you do not specify a project code, bolt will use your default project
+    code (set by your login account).
 
-</div>
-
-If you do not specify the script name with the '-o' option then your
-script will be a file called `a.bolt`.
-
-</div>
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you do not specify the number of parallel tasks then bolt will try to
-generate a serial job submission script (and throw an error on the
-ARCHER2 4 cabinet system as serial jobs are not supported).
-
-</div>
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you do not specify a project code, bolt will use your default project
-code (set by your login account).
-
-</div>
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you do not specify a job name, bolt will use either `bolt_ser_job`
-(for serial jobs) or `bolt_par_job` (for parallel jobs).
-
-</div>
+!!! hint
+    If you do not specify a job name, bolt will use either `bolt_ser_job`
+    (for serial jobs) or `bolt_par_job` (for parallel jobs).
 
 ### Further help
 
@@ -511,10 +356,10 @@ option:
 
 A selection of other useful options are:
 
->   - `-s` Write and submit the job script rather than just writing the
->     job script.
->   - `-p` Force the job to be parallel even if it only uses a single
->     parallel task.
+   - `-s` Write and submit the job script rather than just writing the
+     job script.
+   - `-p` Force the job to be parallel even if it only uses a single
+     parallel task.
 
 ## checkScript job submission script validation tool
 
@@ -575,7 +420,6 @@ and 128 MPI ranks per node for 20 minutes would look like:
 
     #!/bin/bash
     
-    
     # Slurm job options (job-name, compute nodes, job time)
     #SBATCH --job-name=Example_MPI_Job
     #SBATCH --time=0:20:0
@@ -632,50 +476,43 @@ In the example below, we are using 4 nodes for 6 hours. There are 32 MPI
 processes in total (8 MPI processes per node) and 16 OpenMP threads per
 MPI process. This results in all 128 physical cores per node being used.
 
-<div class="note">
+!!! hint
+    Note the use of the `export OMP_PLACES=cores` environment option and the
+    `--hint=nomultithread` and `--distribution=block:block` options to
+    `srun` to generate the correct pinning.
 
-<div class="admonition-title">
+```
+#!/bin/bash
 
-Note
+# Slurm job options (job-name, compute nodes, job time)
+#SBATCH --job-name=Example_MPI_Job
+#SBATCH --time=0:20:0
+#SBATCH --nodes=4
+#SBATCH --ntasks=32
+#SBATCH --tasks-per-node=8
+#SBATCH --cpus-per-task=16
 
-</div>
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
 
-Note the use of the `export OMP_PLACES=cores` environment option and the
-`--hint=nomultithread` and `--distribution=block:block` options to
-`srun` to generate the correct pinning.
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
 
-</div>
+# Set the number of threads to 16 and specify placement
+#   There are 16 OpenMP threads per MPI process
+#   We want one thread per physical core
+export OMP_NUM_THREADS=16
+export OMP_PLACES=cores
 
-    #!/bin/bash
-    
-    # Slurm job options (job-name, compute nodes, job time)
-    #SBATCH --job-name=Example_MPI_Job
-    #SBATCH --time=0:20:0
-    #SBATCH --nodes=4
-    #SBATCH --ntasks=32
-    #SBATCH --tasks-per-node=8
-    #SBATCH --cpus-per-task=16
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Set the number of threads to 16 and specify placement
-    #   There are 16 OpenMP threads per MPI process
-    #   We want one thread per physical core
-    export OMP_NUM_THREADS=16
-    export OMP_PLACES=cores
-    
-    # Launch the parallel job
-    #   Using 32 MPI processes
-    #   8 MPI processes per node
-    #   16 OpenMP threads per MPI process
-    #   Additional srun options to pin one thread per physical core
-    srun --hint=nomultithread --distribution=block:block ./my_mixed_executable.x arg1 arg2
+# Launch the parallel job
+#   Using 32 MPI processes
+#   8 MPI processes per node
+#   16 OpenMP threads per MPI process
+#   Additional srun options to pin one thread per physical core
+srun --hint=nomultithread --distribution=block:block ./my_mixed_executable.x arg1 arg2
+```
 
 ## Job arrays
 
@@ -735,19 +572,10 @@ jobs:
 Job dependencies can be used to construct complex pipelines or chain
 together long simulations requiring multiple steps.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-The `--parsable` option to `sbatch` can simplify working with job
-dependencies. It returns the job ID in a format that can be used as the
-input to other commands.
-
-</div>
+!!! hint
+    The `--parsable` option to `sbatch` can simplify working with job
+    dependencies. It returns the job ID in a format that can be used as the
+    input to other commands.
 
 For example:
 
@@ -779,8 +607,7 @@ jobs.
 
 To submit a request for an interactive job reserving 8 nodes (1024
 physical cores) for 1 hour you would issue the following qsub command
-from the command
-    line:
+from the command line:
 
     auser@uan01:> salloc --nodes=8 --tasks-per-node=128 --cpus-per-task=1 \
                   --time=01:00:00 --partition=standard --qos=standard \
@@ -813,8 +640,7 @@ return you to your prompt before you issued the `salloc` command.
 ### Using `srun` directly
 
 A second way to run an interactive job is to use `srun` directly in the
-following
-    way
+following way:
 
     auser@uan01:>  srun --nodes=1 --exclusive --time=00:20:00 --account=[] \
                    --partition=standard --qos=standard --pty /bin/bash
@@ -844,7 +670,7 @@ specified.
 ## Best practices for job submission
 
 This guidance is adapted from [the advice provided by
-NERSC](https://docs.nersc.gov/jobs/best-practices/)
+[NERSC](https://docs.nersc.gov/jobs/best-practices/)
 
 ### Time Limits
 
@@ -883,7 +709,7 @@ command, the executable can be copied to the `/tmp` directory on each of
 the compute nodes. Since `/tmp` is part of the memory on the compute
 nodes, it can speed up the job startup time.
 
-``` sourceCode bash
+```
 sbcast --compress=lz4 /path/to/exe /tmp/exe
 srun /tmp/exe
 ```
@@ -897,8 +723,7 @@ the communication pattern and other computational characteristics.
 #### Default
 
 The default is to place MPI tasks sequentially on nodes until the
-maximum number of tasks is
-    reached:
+maximum number of tasks is reached:
 
     salloc --nodes=8 --tasks-per-node=2 --cpus-per-task=1 --time=0:10:0 \
            --account=[account code] --partition=partition code] --qos=standard
@@ -932,8 +757,7 @@ maximum number of tasks is
 
 The `MPICH_RANK_REORDER_METHOD` environment variable is used to specify
 other types of MPI task placement. For example, setting it to 0 results
-in a round-robin
-    placement:
+in a round-robin placement:
 
     salloc --nodes=8 --tasks-per-node=2 --cpus-per-task=1 --time=0:10:0 --account=t01
     
@@ -1009,22 +833,12 @@ example):
 
 And also load the same huge pages module at runtime.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Due to the huge pages memory fragmentation issue, applications may get
-*Cannot allocate memory* warnings or errors when there are not enough
-hugepages on the compute node, such as:
-    :
+!!! warning
+    Due to the huge pages memory fragmentation issue, applications may get
+    *Cannot allocate memory* warnings or errors when there are not enough
+    hugepages on the compute node, such as:
 
     libhugetlbfs [nid0000xx:xxxxx]: WARNING: New heap segment map at 0x10000000 failed: Cannot allocate memory``
-
-</div>
 
 By default, The verbosity level of libhugetlbfs `HUGETLB_VERBOSE` is set
 to `0` on ARCHER2 to surpress debugging messages. Users can adjust this
