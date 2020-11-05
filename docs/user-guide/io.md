@@ -9,7 +9,6 @@
 Different file systems are configured for different purposes and
 performance. ARCHER2 has three file systems available to users:
 
-| --------- | ---------------------- |
 | Node type | Available file systems |
 | --------- | ---------------------- |
 | Login     | /home, /work           |
