@@ -165,7 +165,8 @@ credentials correctly to be able to access ARCHER2.
 
 !!! hint
     More information on connecting to ARCHER2 is available in
-    the [Connecting to ARCHER2](../user-guide/connecting.md).
+    the [Connecting to ARCHER2](../user-guide/connecting.md) section of
+    the User Guide.
 
 ## File systems and manipulating data
 
@@ -203,7 +204,8 @@ Top tips for managing data on ARCHER2:
 
 !!! hint
     Information on best practice in managing you data is available in the
-    [Data management and transfer](../user-guide/data.md).
+    [Data management and transfer](../user-guide/data.md) section of the
+    User Guide.
 
 ## Accessing software
 
