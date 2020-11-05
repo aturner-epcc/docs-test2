@@ -1,0 +1,50 @@
+theme:
+  name: material
+  favicon: favicon.ico
+  logo: images/archer2_white_transparent.png
+  palette:
+    scheme: default
+  features:
+    - tabs
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/archer2.css
+
+site_name: ARCHER2 User Documentation
+repo_url: https://github.com/ARCHER2-HPC/archer2-docs
+repo_name: ARCHER2-HPC/archer2-docs
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ARCHER2-HPC
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ARCHER2_HPC
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/groups/13848871/
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - "Documentation overview": index.md
+  - "Quickstart":
+    - quick-start/quickstart-users.md
+    - quick-start/quickstart-developers.md
+  - "User and Best Practice Guide":
+    - "Connecting to ARCHER2": user-guide/connecting.md
+    - user-guide/data.md
+    - user-guide/sw-environment.md
+    - user-guide/scheduler.md
+    - user-guide/io.md
+    - user-guide/dev-environment.md
+    - user-guide/containers.md
+    - user-guide/python.md
+    - user-guide/analysis.md
+    - user-guide/debug.md
+    - user-guide/profile.md
+    - user-guide/tuning.md
+
