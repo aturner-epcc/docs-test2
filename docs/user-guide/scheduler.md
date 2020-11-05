@@ -133,7 +133,7 @@ on ARCHER2.
 
 | Partition | Description                                                 | Max nodes available |
 | --------- | ----------------------------------------------------------- | ------------------- |
-| standard  | CPU nodes with AMD EPYC 7742 64-core processor \(\times\) 2 | 1024                |
+| standard  | CPU nodes with AMD EPYC 7742 64-core processor &times; 2    | 1024                |
 | short     | As with standard.                                           | 32                  |
 
 ARCHER2 Partitions
