@@ -36,36 +36,36 @@ nav:
     - quick-start/quickstart-developers.md
   - "User and Best Practice Guide":
     - "Connecting to ARCHER2": user-guide/connecting.md
-    - user-guide/data.md
-    - user-guide/sw-environment.md
-    - user-guide/scheduler.md
-    - user-guide/io.md
-    - user-guide/dev-environment.md
-    - user-guide/containers.md
-    - user-guide/python.md
-    - user-guide/analysis.md
-    - user-guide/debug.md
-    - user-guide/profile.md
-    - user-guide/tuning.md
-  - "Research Software"
-    - castep/castep.md
-    - chemshell/chemshell.md
-    - code-saturne/code-saturne.md
-    - cp2k/cp2k.md
-    - elk/elk.md
-    - fenics/fenics.md
-    - gromacs/gromacs.md
-    - lammps/lammps.md
-    - mitgcm/mitgcm.md
-    - mo-unified-model/mo-unified-model.md
-    - namd/namd.md
-    - nektar++/nektar++.md
-    - nemo/nemo.md
-    - nwchem/nwchem.md
-    - onetep/onetep.md
-    - openfoam/openfoam.md
-    - qe/qe.md
-    - vasp/vasp.md
+    - "Data management and transfer": user-guide/data.md
+    - "Software environment": user-guide/sw-environment.md
+    - "Running jobs on ARCHER2": user-guide/scheduler.md
+    - "I/O and file systems": user-guide/io.md
+    - "Application development environment": user-guide/dev-environment.md
+    - "Containers": user-guide/containers.md
+    - "Using Python": user-guide/python.md
+    - "Data analysis": user-guide/analysis.md
+    - "Debugging": user-guide/debug.md
+    - "Profiling": user-guide/profile.md
+    - "Performance tuning": user-guide/tuning.md
+  - "Research Software":
+    - "CASTEP": castep/castep.md
+    - "Chemshell": chemshell/chemshell.md
+    - "Code_Saturne": code-saturne/code-saturne.md
+    - "CP2K": cp2k/cp2k.md
+    - "ELK": elk/elk.md
+    - "FEniCS": fenics/fenics.md
+    - "GROMACS": gromacs/gromacs.md
+    - "LAMMPS": lammps/lammps.md
+    - "MITgcm": mitgcm/mitgcm.md
+    - "Met Office Unified Model": mo-unified-model/mo-unified-model.md
+    - "NAMD": namd/namd.md
+    - "Nektar++": nektar++/nektar++.md
+    - "NEMO": nemo/nemo.md
+    - "NWChem": nwchem/nwchem.md
+    - "ONETEP": onetep/onetep.md
+    - "OpenFOAM": openfoam/openfoam.md
+    - "Quantum Espresso": qe/qe.md
+    - "VASP": vasp/vasp.md
   - "Software Libraries": overview.md
   - "Data Analysis and Tools": overview.md
 
