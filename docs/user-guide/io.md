@@ -1,79 +1,24 @@
 # I/O and file systems
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 ## Using the ARCHER2 file systems
 
 Different file systems are configured for different purposes and
 performance. ARCHER2 has three file systems available to users:
 
-<table style="width:54%;">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 34%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Node type</th>
-<th>Available file systems</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Login</td>
-<td>/home | /work</td>
-</tr>
-<tr class="even">
-<td>Compute</td>
-<td>/work | SSS</td>
-</tr>
-<tr class="odd">
-<td>PP</td>
-<td><blockquote>
-<div class="line-block"></div>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+| --------- | ---------------------- |
+| Node type | Available file systems |
+| --------- | ---------------------- |
+| Login     | /home, /work           |
+| Compute   | /work                  |
 
-<div class="warning">
+!!! warning
+    Any data used in a parallel jobs should be located on `/work` (Lustre).
 
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Any data used in a parallel jobs should be located on `/work` (Lustre)
-or the solid state storage.
-
-</div>
-
-### Home
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-This file system is backed up for disaster recovery purposes only. Data
-recovery for accidental deletion is not supported.
-
-</div>
+### Home file systems
 
 Home directories provide a convenient means for a user to have access to
 files such as source files, input files or configuration files. This
@@ -84,12 +29,10 @@ each user is located at:
 
 where
 
-`[project code]` is the code for your project (e.g., x01);
-
-`[group code]` is the code for your project group, if your project has
-groups, (e.g. x01-a) or the same as the project code, if not;
-
-`[username]` is your login name.
+   - `[project code]` is the code for your project (e.g., x01);
+   - `[group code]` is the code for your project group, if your project has
+     groups, (e.g. x01-a) or the same as the project code, if not;
+   - `[username]` is your login name.
 
 Each project is allocated a portion of the total storage available, and
 the project PI will be able to sub-divide this quota among the groups
@@ -101,22 +44,13 @@ It should be noted that the home file system is not designed, and does
 not have the capacity, to act as a long term archive for large sets of
 results.
 
-### Work
+### Work file system
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-There is no separate backup of data on any of the work file systems,
-which means that in the event of a major hardware failure, or if a user
-accidently deletes essential data, it will not be possible to recover
-the lost files.
-
-</div>
+!!! warning
+    There is no backup of data on any of the work file systems,
+    which means that in the event of a major hardware failure, or if a user
+    accidently deletes essential data, it will not be possible to recover
+    the lost files.
 
 High-performance Lustre file system mounted on the compute nodes. All
 parallel calculations must be run from directories on the `/work` file
@@ -131,38 +65,16 @@ The work directory for each user is located at:
 
 where
 
-`[project code]` is the code for your project (e.g., x01);
-
-`[group code]` is the code for your project group, if your project has
-groups, (e.g. x01-a) or the same as the project code, if not;
-
-`[username]` is your login name.
+   - `[project code]` is the code for your project (e.g., x01);
+   - `[group code]` is the code for your project group, if your project has
+     groups, (e.g. x01-a) or the same as the project code, if not;
+   - `[username]` is your login name.
 
 Links from the `/home` file system to directories or files on `/work`
 are strongly discouraged. If links are used, executables and data files
 on `/work` to be used by applications on the compute nodes (i.e. those
 executed via the `aprun` command) should be referenced directly on
 `/work`.
-
-### Solid State Storage (SSS)
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-This section is in development and it will be completed as soon as
-possible.
-
-</div>
-
-The 1.1 PiB ARCHER2 solid state file system significantly increase the
-I/O performance for all file sizes and access patterns.
-
-## Disk quotas
 
 ## Sharing data with other ARCHER2 users
 
@@ -280,8 +192,8 @@ that all output files inherit the settings.
 
 #### Default configuration
 
-> The `/work` file systems on ARCHER2 have the same default stripe
-> settings:
+ The `/work` file systems on ARCHER2 have the same default stripe
+ settings:
 
   - A default stripe count of 1
   - A default stripe size of 1 MiB (1048576 bytes)
@@ -293,30 +205,21 @@ command to query the stripe settings for a directory (or file) is `lfs
 getstripe`. For example, to query the stripe settings of an already
 created directory `res_dir`:
 
-    [user@archer2]$ lfs getstripe res_dir/
+    [auser@archer2]$ lfs getstripe res_dir/
     res_dir
     stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1 
 
 #### Setting Custom Striping Configurations
 
-<div class="warning">
+!!! hint
+    You cannot currently perform parallel IO to a striped file if the number
+    of MPI processes is larger than the stripe count. Although this is
+    unlikely to be an issue in production runs, where the number of
+    processes will normally be in the hundreds, it could cause an issue
+    during development or benchmarking.
 
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-You cannot currently perform parallel IO to a striped file if the number
-of MPI processes is larger than the stripe count. Although this is
-unlikely to be an issue in production runs, where the number of
-processes will normally be in the hundreds, it could cause an issue
-during development or benchmarking.
-
-</div>
-
-Users can set stripe settings for a directory (or file) using the `lfs
-setstripe` command. The options for `lfs setstripe` are:
+Users can set stripe settings for a directory (or file) using the
+`lfs setstripe` command. The options for `lfs setstripe` are:
 
   - `[--stripe-count|-c]` to set the stripe count; 0 means use the
     system default (usually 1) and -1 means stripe over all available
@@ -332,15 +235,14 @@ setstripe` command. The options for `lfs setstripe` are:
 For example, to set a stripe size of 4 MiB for the existing directory
 `res_dir`, along with maximum striping count you would use:
 
-    [user@archer2]$ lfs setstripe -s 4m -c -1 res_dir/
+    [auser@archer2]$ lfs setstripe -s 4m -c -1 res_dir/
 
 ### Recommended ARCHER2 I/O settings
 
+!!! note
+    We will add advice on I/O settings soon.
+
 ## I/O Profiling
 
-ARCHER2 has a number of tools available for users to profile and analyse
-the I/O activity of software applications.
-
-### CrayPat
-
-### Darshan
+!!! note
+    We will add advice on I/O profiling soon.
