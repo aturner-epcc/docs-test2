@@ -47,4 +47,26 @@ nav:
     - user-guide/debug.md
     - user-guide/profile.md
     - user-guide/tuning.md
+  - "Research Software"
+    - castep/castep.md
+    - chemshell/chemshell.md
+    - code-saturne/code-saturne.md
+    - cp2k/cp2k.md
+    - elk/elk.md
+    - fenics/fenics.md
+    - gromacs/gromacs.md
+    - lammps/lammps.md
+    - mitgcm/mitgcm.md
+    - mo-unified-model/mo-unified-model.md
+    - namd/namd.md
+    - nektar++/nektar++.md
+    - nemo/nemo.md
+    - nwchem/nwchem.md
+    - onetep/onetep.md
+    - openfoam/openfoam.md
+    - qe/qe.md
+    - vasp/vasp.md
+  - "Software Libraries": overview.md
+  - "Data Analysis and Tools": overview.md
+
 
