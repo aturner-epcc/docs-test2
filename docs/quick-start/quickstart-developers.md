@@ -187,7 +187,7 @@ specified with flags of the type `-l<library-name>`.
 The following debugging tools are available on ARCHER2:
 
   - **gdb4hpc** is a command-line tool working similarly to
-  - [gdb](https://www.gnu.org/software/gdb/) that allows users to debug
+    [gdb](https://www.gnu.org/software/gdb/) that allows users to debug
     parallel programs. It can launch parallel programs or attach to ones
     already running and allows the user to step through the execution to
     identify the causes of any unexpected behaviour. Available via
