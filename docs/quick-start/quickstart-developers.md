@@ -1,8 +1,8 @@
 # Quickstart for developers
 
-!!!warning
-  The ARCHER2 Service is not yet available. This documentation is in
-  development.
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 This guide aims to quickly enable developers to work on ARCHER2. It
 assumes that you are familiar with the material in the
@@ -70,10 +70,10 @@ gcc/9.3.0`. At this point you may invoke the compiler wrappers and they
 will correctly use Cray's libraries and tools in conjunction with GCC
 9.3.0.
 
-!!!warning
-  The `gcc/8.3.0` module is available on ARCHER2 but cannot be used as the
-  supporting scientific and system libraries are not available. You should
-  **not** use this version of GCC.
+!!! warning
+    The `gcc/8.3.0` module is available on ARCHER2 but cannot be used as the
+    supporting scientific and system libraries are not available. You should
+    **not** use this version of GCC.
 
 When choosing the programming environment, a big factor will likely be
 which compilers you have previously used for your code's development.
@@ -83,8 +83,8 @@ are new versions that are now derived from Clang. The GCC suite provides
 gcc/g++ and gfortran. The AOCC suite provides AMD Clang/Clang++ and AMD
 Flang.
 
-!!!note 
-  The Intel compilers are not available on ARCHER2.
+!!! note 
+    The Intel compilers are not available on ARCHER2.
 
 ## Useful compiler options
 
@@ -98,10 +98,10 @@ flags should be a good starting point for reasonable performance:
 | Cray Fortran | Default options                                   |
 | GCC          | `-O2 -ftree-vectorize -funroll-loops -ffast-math` |
 
-!!!tip
-  If you want to use GCC version 10 or greater to compile Fortran code,
-  you **must** add the `-fallow-argument-mismatch` option when compiling
-  otherwise you will see compile errors associated with MPI functions.
+!!! tip
+    If you want to use GCC version 10 or greater to compile Fortran code,
+    you **must** add the `-fallow-argument-mismatch` option when compiling
+    otherwise you will see compile errors associated with MPI functions.
 
 When you are happy with your code's performance you may wish to enable
 more aggressive optimisations; in this case you could start using the
@@ -137,8 +137,8 @@ pages to read are accessed as follow:
 | Cray           | `man craycc` | `man crayCC` | `man crayftn`  |
 | GNU            | `man gcc`    | `man g++`    | `man gfortran` |
 
-!!!tip
-  There are no `man` pages for the AOCC compilers at the moment.
+!!! tip
+    There are no `man` pages for the AOCC compilers at the moment.
 
 ## Linking on ARCHER2
 
@@ -226,9 +226,9 @@ For more information on debugging parallel codes, see the documentation
 at `ARCHER2 User and Best Practice Guide - Debugging
 <../user-guide/debug>`.
 
-!!!note
-  We will add more information on using the debugging tools once the
-  ARCHER2 system is available.
+!!! note
+    We will add more information on using the debugging tools once the
+    ARCHER2 system is available.
 
 ## Profiling tools
 
@@ -282,13 +282,13 @@ The available `perftools-lite` modules are:
   - `perftools-lite-loops`, instrumenting a loop work estimate
     experiment.
 
-!!!tip
-For more information on profiling parallel codes, see the documentation
-at [ARCHER2 User and Best Practice Guide - Profiling](../user-guide/profile.md).
-
-!!!note
-  We will add more information on using the profiling tools once the
-  ARCHER2 system is available.
+!!! tip
+    For more information on profiling parallel codes, see the documentation
+    at [ARCHER2 User and Best Practice Guide - Profiling](../user-guide/profile.md).
+ 
+!!! note
+    We will add more information on using the profiling tools once the
+    ARCHER2 system is available.
 
 ## Useful Links
 

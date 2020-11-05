@@ -1,6 +1,6 @@
 # Quickstart for users
 
-!!!warning
+!!! warning
     The ARCHER2 Service is not yet available. This documentation is in
     development.
 
@@ -10,7 +10,7 @@ and running your first job.
 
 ## Request an account on ARCHER2
 
-!!!important
+!!! important
     You need to use both a password and a passphrase-protected SSH key pair
     to log into ARCHER2. You get the password from SAFE, but, you will also
     need to setup your own SSH key pair and add the public part to your
@@ -77,7 +77,7 @@ created and when this has been done you will receive an email. You can
 then come back to SAFE and pick up the initial single-use password for
 your new account.
 
-!!!note
+!!! note
     ARCHER2 account passwords are also sometimes referred to as LDAP
     passwords by the system.
 
@@ -127,7 +127,7 @@ will be prompted for your new, easy-to-remember password. Your new
 password should conform to the [ARCHER2 Password
 Policy](https://www.archer2.ac.uk/about/policies/passwords_usernames.html).
 
-!!!note
+!!! note
     The *View Login Account Password* option within SAFE will continue to
     display your old initial password. Your SAFE account has no knowledge of
     your new machine account password.
@@ -143,7 +143,7 @@ have entered your password successfully, you will then be prompted for
 the passphrase associated with your SSH key pair. You need to enter both
 credentials correctly to be able to access ARCHER2.
 
-!!!tip
+!!! tip
     If your SSH key pair is not stored in the default location (usually
     `~/.ssh/id_rsa`) on your local system, you may need to specify the path
     to the private part of the key wih the `-i` option to `ssh`. For
@@ -151,7 +151,7 @@ credentials correctly to be able to access ARCHER2.
     use the command `ssh -i keys/id_rsa_archer2
     username@login.archer2.ac.uk` to log in.
 
-!!!tip
+!!! tip
     When you first log into ARCHER2, you will be prompted to change your
     initial password. This is a three step process:
 
@@ -163,7 +163,7 @@ credentials correctly to be able to access ARCHER2.
 
     Your password has now been changed.
 
-!!!hint
+!!! hint
     More information on connecting to ARCHER2 is available in
     the [Connecting to ARCHER2](../user-guide/connecting.md).
 
@@ -201,7 +201,7 @@ Top tips for managing data on ARCHER2:
     Management Guide linked below provides examples of how to
     automatically verify the integrity of an archive.
 
-!!!hint
+!!! hint
     Information on best practice in managing you data is available in the
     [Data management and transfer](../user-guide/data.md).
 
@@ -234,7 +234,7 @@ example, `vasp/5/5.4.4` and `vasp/6/6.1.0` are two available versions of
 VASP. Furthermore, a default version may be specified; this is used if
 no version is provided by the user.
 
-!!!important
+!!! important
     VASP is licensed software, as are other software packages on ARCHER2.
     You must have a valid licence to use licensed software on ARCHER2. Often
     you will need to request access through the SAFE. More on this below.
@@ -320,7 +320,7 @@ submission script that tells the system how many compute nodes you want
 to reserve and for how long. You also need to use the `srun` command to
 launch your parallel executable.
 
-!!!hint
+!!! hint
     For a more details on the Slurm scheduler on ARCHER2 and writing job
     submission scripts see the
     [Running jobs on ARCHER2](../user-guide/scheduler.md) section of the User
@@ -349,7 +349,7 @@ using `vim`:
 
 <div class="admonition-title">
 
-!!!tip
+!!! tip
     You will need to use your project code and username to get to the
     correct directory. i.e. replace the `t01`
     above with your project code and replace the username
