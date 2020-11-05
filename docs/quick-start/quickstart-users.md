@@ -326,13 +326,7 @@ launch your parallel executable.
     [Running jobs on ARCHER2](../user-guide/scheduler.md) section of the User
     and Best Practice Guide.
 
-</div>
-
-<div class="warning">
-
-<div class="admonition-title">
-
-!!!important
+!!! important
     Parallel jobs on ARCHER2 should be run from the /work file system as
     /home is not available on the compute nodes - you will see a `chdir` or
     *file not found* error if you try to run a job from the /home file
@@ -344,10 +338,6 @@ using `vim`:
 
     auser@uan01:~> cd /work/t01/t01/auser
     auser@uan01:/work/t01/t01/auser> vim submit.slurm
-
-<div class="note">
-
-<div class="admonition-title">
 
 !!! tip
     You will need to use your project code and username to get to the
