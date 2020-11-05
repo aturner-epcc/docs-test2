@@ -1,17 +1,8 @@
 # CASTEP
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!!warning
+   The ARCHER2 Service is not yet available. This documentation is in
+   development.
 
 [CASTEP](http://www.castep.org) is a leading code for calculating the
 properties of materials from first principles. Using density functional
@@ -24,9 +15,9 @@ and core level spectra.
 
 ## Useful Links
 
->   - [CASTEP User Guides](http://www.castep.org/CASTEP/Documentation)
->   - [CASTEP Tutorials](http://www.castep.org/CASTEP/OnlineTutorials)
->   - [CASTEP Licensing](http://www.castep.org/CASTEP/GettingCASTEP)
+   - [CASTEP User Guides](http://www.castep.org/CASTEP/Documentation)
+   - [CASTEP Tutorials](http://www.castep.org/CASTEP/OnlineTutorials)
+   - [CASTEP Licensing](http://www.castep.org/CASTEP/GettingCASTEP)
 
 ## Using CASTEP on ARCHER2
 
@@ -35,8 +26,8 @@ and core level spectra.
 If you have a CASTEP licence and wish to have access to CASTEP on
 ARCHER2, please make a request via the SAFE, see:
 
->   - [How to request access to package
->     groups](https://epcced.github.io/safe-docs/safe-for-users/#how-to-request-access-to-a-package-group)
+   - [How to request access to package
+     groups](https://epcced.github.io/safe-docs/safe-for-users/#how-to-request-access-to-a-package-group)
 
 Please have your license details to hand.
 
@@ -68,25 +59,11 @@ assumes that the input files have the file stem `text_calc`.
     export OMP_NUM_THREADS=1
     srun -cpu-bind=cores castep.mpi test_calc
 
-## Hints and Tips
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-We will add information on running CASTEP efficiently on ARCHER2 as it
-becomes available.
-
-</div>
 
 ## Compiling CASTEP
 
 The latest instructions for building CASTEP on ARCHER2 may be found in
 the GitHub repository of build instructions:
 
->   - [Build instructions for CASTEP on
->     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/CASTEP)
+   - [Build instructions for CASTEP on
+     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/CASTEP)
