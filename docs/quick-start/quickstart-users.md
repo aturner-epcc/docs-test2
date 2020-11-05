@@ -32,8 +32,8 @@ you to report on your usage and quotas. To do this:
 You are now registered. Your SAFE password will be emailed to the email
 address you provided. You can then login with that email address and
 password. (You can change your initial SAFE password whenever you want
-by selecting the <span class="title-ref">Change SAFE password</span>
-option from the <span class="title-ref">Your details</span> menu.)
+by selecting the *Change SAFE password*
+option from the *Your details* menu.)
 
 ### Generating and adding an SSH key pair
 
