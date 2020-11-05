@@ -25,25 +25,25 @@ This is the documentation for the ARCHER2 service and includes:
     The ARCHER2 quick start guide provides the minimum information for
     new users or users transferring from ARCHER.
 
-  - [user-guide/](ARCHER2 User and Best Practice Guide)
+  - [ARCHER2 User and Best Practice Guide](user-guide/)
     Covers all aspects of use of the ARCHER2 supercomputing service.
     This includes fundamentals (required by all users to use the system
     effectively), best practice for getting the most out of ARCHER2, and
     more advanced technical topics.
 
-  - [research-software/](Research Software) 
+  - [Research Software](research-software/)
     Information on each of the centrally-installed research software
     packages.
 
-  - [software-libraries/](Software Libraries)
+  - [Software Libraries](software-libraries/)
     Information on the centrally-installed software libraries. Most
     libraries work *as expected* so no additional notes are required
     however a small number require specific documentation
 
-  - [data-tools/](Data Analysis and Tools)
+  - [Data Analysis and Tools](data-tools/)
     Information on data analysis tools and other useful utilities.
 
-  - [essentials/](Essential Skills) 
+  - [Essential Skills](essentials/)
     This section provides information and links on essential skills
     required to use ARCHER2 efficiently: *e.g.* using Linux command
     line, accessing help and documentation.
