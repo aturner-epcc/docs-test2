@@ -6,8 +6,8 @@
 
 The following debugging tools are available on ARCHER2:
 
-  - [gdb4hpc](#gdb4hpc) is a command-line debugging tool provided by
-    Cray. It works similarly to
+  - gdb4hpc is a command-line debugging tool provided by
+    HPE Cray. It works similarly to
     [gdb](https://www.gnu.org/software/gdb/), but allows the user to
     debug multiple parallel processes without multiple windows. gdb4hpc
     can be used to investigate deadlocked code, segfaults, and other
@@ -15,16 +15,16 @@ The following debugging tools are available on ARCHER2:
     focus on specific processes groups to help identify unexpected code
     behavior. (text from
     [ALCF](https://www.alcf.anl.gov/support-center/theta/gdb)).
-  - [valgrind4hpc](#valgrind4hpc) is a parallel memory debugging tool
+  - valgrind4hpc is a parallel memory debugging tool
     that aids in detection of memory leaks and errors in parallel
     applications. It aggregates like errors across processes and threads
     to simply debugging of parallel applications.
-
-\* [ATP](#atp) scalable core file and backtrace analysis when parallel
-programs crash. Note that this is not currently working on ARCHER2. ..
-\* [STAT](#stat) generate merged stack traces for parallel applications.
-Also has visualisation tools.
-\* [CCDB]() Cray Comparative Debugger. Compare two versions of code side-by-side to analyse differences.
+  - ATP provides scalable core file and backtrace analysis when parallel
+    programs crash.
+  - STAT generate merged stack traces for parallel applications.
+    Also has visualisation tools.
+  - CCDB Cray Comparative Debugger. Compare two versions of code
+    side-by-side to analyse differences.
 
 ## gdb4hpc
 
@@ -38,19 +38,10 @@ gdb4hpc will allow you to see your application running step-by-step,
 output the values of variables, and check whether the application runs
 as expected.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-For your executable to be compatible with gdb4hpc, it will need to be
-coded with MPI. You will also need to compile your code with the
-debugging flag `-g` (e.g. `cc -g my_program.c -o my_exe`).
-
-</div>
+!!! tip
+    For your executable to be compatible with gdb4hpc, it will need to be
+    coded with MPI. You will also need to compile your code with the
+    debugging flag `-g` (e.g. `cc -g my_program.c -o my_exe`).
 
 ### Launching through gdb4hpc
 
@@ -118,24 +109,24 @@ Once the code is loaded, you can use various commands to move through
 your code. The following lists and describes some of the most useful
 ones:
 
->   - `help` -- Lists all gdb4hpc commands. You can run `help
->     COMMAND_NAME` to learn more about a specific command (*e.g.* `help
->     launch` will tell you about the launch command
->   - `list` -- Will show the current line of code and the 9 lines
->     following. Repeated use of `list` will move you down the code in
->     ten-line chunks.
->   - `next` -- Will jump to the next step in the program for each
->     process and output which line of code each process is one. It will
->     not enter subroutines. Note that there is no reverse-step in
->     gdb4hpc.
->   - `step` -- Like `next`, but this will step into subroutines.
->   - `up` -- Go up one level in the program (*e.g.* from a subroutine
->     back to main).
->   - `print var` -- Prints the value of variable `var` at this point in
->     the code.
->   - `watch var` -- Like print, but will print whenever a variable
->     changes value.
->   - `quit` -- Exits gdb4hpc.
+   - `help` -- Lists all gdb4hpc commands. You can run `help
+     COMMAND_NAME` to learn more about a specific command (*e.g.* `help
+     launch` will tell you about the launch command
+   - `list` -- Will show the current line of code and the 9 lines
+     following. Repeated use of `list` will move you down the code in
+     ten-line chunks.
+   - `next` -- Will jump to the next step in the program for each
+     process and output which line of code each process is one. It will
+     not enter subroutines. !!! note that there is no reverse-step in
+     gdb4hpc.
+   - `step` -- Like `next`, but this will step into subroutines.
+   - `up` -- Go up one level in the program (*e.g.* from a subroutine
+     back to main).
+   - `print var` -- Prints the value of variable `var` at this point in
+     the code.
+   - `watch var` -- Like print, but will print whenever a variable
+     changes value.
+   - `quit` -- Exits gdb4hpc.
 
 Remember to exit the interactive session once you are done debugging.
 
@@ -144,7 +135,7 @@ Remember to exit the interactive session once you are done debugging.
 Attaching to a hanging job using gdb4hpc is a great way of seeing which
 state each processor is in. However, this does not produce the most
 visually appealing results. For a more easy-to-read program, please take
-a look at [STAT](#stat)
+a look at the STAT tool.
 
 In your interactive session, launch your executable as a background task
 (by adding an `&` at the end of the command). For example, if you are
@@ -201,10 +192,10 @@ eventually, you will get a command prompt:
 We will be using the `attach` command to attach to our program that
 hangs. This is done by writing:
 
-  - ::  
-    dbg all\> attach $my\_prog JOB\_ID.\#\#
 
-where JOB\_ID.\#\# is the full job ID found using `sstat` (in our
+    dbg all> attach $my_prog JOB_ID.##
+
+where `JOB_ID.##` is the full job ID found using `sstat` (in our
 example, this would be 1051.0). The name `$my_prog` is a dummy-name --
 it could be whatever name you like.
 
@@ -240,7 +231,7 @@ When you are finished using `gbd4hpc`, simply run:
 
 Do not forget to exit your interactive session.
 
-## valgrind4hpc
+## Valgrind4hpc
 
 Valgrind4hpc is a Valgrind-based debugging tool to aid in the detection
 of memory leaks and errors in parallel applications. Valgrind4hpc
@@ -253,7 +244,7 @@ debugged with Valgrind, it can be debugged with valgrind4hpc.
 The valgrind4hpc module enables the use of standard valgrind as well as
 the valgrind4hpc version more suitable to parallel programs.
 
-### Using valgrind
+### Using Valgrind with serial programs
 
 Launch `valgrind4hpc`:
 
@@ -263,10 +254,10 @@ Next, run your executable through valgrind:
 
     valgrind --tool=memcheck --leak-check=yes my_executable
 
-The log outputs to screen. The <span class="title-ref">ERROR
-SUMMARY</span> will tell you whether, and how many, memory errors there
-are in your script. Furthermore, if you compile your code using the `-g`
-debugging flag (*e.g.* `gcc -g my_progam.c -o my_executable.c`), the log
+The log outputs to screen. The `ERROR SUMMARY` will tell you whether,
+and how many, memory errors there
+are in your program. Furthermore, if you compile your code using the `-g`
+debugging flag (*e.g.* `gcc -g my_program.c -o my_executable.c`), the log
 will point out the code lines where the error occurs.
 
 Valgrind also includes a tool called Massif that can be used to give
@@ -304,7 +295,7 @@ This will show total memory usage over time as well as a breakdown of
 the top data structures contributing to memory usage at each snapshot
 where there has been a significant allocation or deallocation of memory.
 
-### Using valgrind4hpc
+### Using Valgrind4hpc with parallel programs
 
 First, load `valgrind4hpc`:
 
@@ -312,8 +303,7 @@ First, load `valgrind4hpc`:
 
 Valgrind4hpc will launch an srun job to run the executable while it
 profiles. To test an executable called `my_executable` that requires two
-arguments `arg1` and `arg2` on two nodes and 256 processes,
-    run:
+arguments `arg1` and `arg2` on two nodes and 256 processes, run:
 
     valgrind4hpc --tool=memcheck --num-ranks=256 --launcher-args="--account=[budget code] --nodes=2 \
                  --partition=standard --qos=standard --export=ALL -ntasks-per-node=128 --cpus-per-task=1" \
@@ -330,8 +320,8 @@ memcheck, helgrind, exp-sgcheck, or drd. The
 supported in valgrind4hpc (*e.g.* `--leak-check`) -- note, however, that
 some of these options might interfere with valgrind4hpc.
 
-More information on valgrind4hpc can be found in the manual (`man
-valgrind4hpc`).
+More information on valgrind4hpc can be found in the manual
+(`man valgrind4hpc`).
 
 ## STAT
 
@@ -367,8 +357,9 @@ executable called `my_exe` using 256 processes, you would
     srun -n 256 --nodes=2 --tasks-per-node=128 --cpus-per-task=1 --time=01:00:00  --export=ALL\
                 --account=[budget code] --partition=standard --qos=standard./my_exe &
 
-Note that this example has set the job time limit to 1 hour -- if you
-need longer, change the `--time` command.
+!!! note
+    This example has set the job time limit to 1 hour -- if you
+    need longer, change the `--time` command.
 
 You will need the Program ID (PID) of the job you have just launched --
 the PID is printed to screen upon launch, or you can get it by running:
@@ -429,15 +420,12 @@ of the executable you  ran):
 
 This produces a graph displaying all the different places within the program that the parallel processes were when you queried them.
 
-!!!note
-   To see the graph, you will need to have exported your X display when logging in.
+!!! note
+    To see the graph, you will need to have exported your X display when logging in.
 
 ## ATP
 
-!!!warning
-   There is a known bug with the ATP module. This is currently being fixed.
-
-To enable ATP you should load the atp module and set the "ATP\_ENABLED"
+To enable ATP you should load the atp module and set the `ATP_ENABLED`
 environment variable to 1 on the login node:
 
     module load atp
@@ -451,9 +439,9 @@ executable called `my_exe` using 256 processes, you would
     srun -n=256 --nodes=2 --tasks-per-node=128 --cpus-per-task=1 --time=01:00:00 --export=ALL \
                 --account=[budget code] --partition=standard --qos=standard ./my_exe &
 
-!!!note
-   This example has set the job time limit to 1 hour -- if you
-   need longer, change the `--time` command.
+!!! note
+    This example has set the job time limit to 1 hour -- if you
+    need longer, change the `--time` command.
 
 Once the job has finished running, load the `stat` module to view the
 results:
@@ -464,7 +452,7 @@ and view the merged stack trace using:
 
     stat-view atpMergedBT.dot
 
-!!!note
-   To see the graph, you will need to have exported your X display when
-   logging in.
+!!! note
+    To see the graph, you will need to have exported your X display when
+    logging in.
 
