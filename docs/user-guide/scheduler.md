@@ -640,9 +640,9 @@ return you to your prompt before you issued the `salloc` command.
 A second way to run an interactive job is to use `srun` directly in the
 following way:
 
-    auser@uan01:>  srun --nodes=1 --exclusive --time=00:20:00 --account=[] \
+    auser@uan01:/work/t01/t01/auser> srun --nodes=1 --exclusive --time=00:20:00 --account=[] \
                    --partition=standard --qos=standard --pty /bin/bash
-    auser@uan01:> hostname
+    auser@uan01:/work/t01/t01/auser> hostname
     nid001261
 
 The `--pty /bin/bash` will cause a new shell to be started on the first

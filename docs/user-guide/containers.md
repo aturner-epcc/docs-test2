@@ -1,21 +1,11 @@
 # Containers
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 This page was originally based on the documentation at the
-<span class="title-ref">University of Sheffield HPC service
-\<http://docs.hpc.shef.ac.uk/en/latest/sharc/software/apps/singularity.html\></span>\_\_.
+[University of Sheffield HPC service](http://docs.hpc.shef.ac.uk/en/latest/sharc/software/apps/singularity.html)
 
 Designed around the notion of mobility of compute and reproducible
 science, Singularity enables users to have full control of their
@@ -28,13 +18,14 @@ software into that image, copy the image to another host (e.g. ARCHER2),
 and run your application on that host in it’s native Ubuntu environment.
 
 Singularity also allows you to leverage the resources of whatever host
-you are on. This includes high-speed interconnects (i.e. Infinband on
+you are on. This includes high-speed interconnects (i.e. Slingshot on
 ARCHER2), file systems (i.e. /lustre on ARCHER2) and potentially other
-resources (e.g. the licensed Intel compilers on ARCHER2).
+resources.
 
-**Note:** Singularity only supports Linux containers. You cannot create
-images that use Windows or macOS (this is a restriction of the
-containerisation model rather than Singularity).
+!!! note
+    Singularity only supports Linux containers. You cannot create
+    images that use Windows or macOS (this is a restriction of the
+    containerisation model rather than Singularity).
 
 ## Useful Links
 
@@ -56,13 +47,11 @@ on ARCHER2.
 
 Pre-built images (such as those on [DockerHub](http://hub.docker.com) or
 [SingularityHub](https://singularity-hub.org/)) can simply be downloaded
-and used on ARCHER2 (or anywhere else Singularity is installed); see
-`use_image_singularity`).
+and used on ARCHER2 (or anywhere else Singularity is installed).
 
 Creating and modifying images requires root permission and so must be
 done on a system where you have such access (in practice, this is
-usually within a virtual machine on your laptop/workstation); see
-`create_image_singularity`.
+usually within a virtual machine on your laptop/workstation).
 
 ## Using Singularity Images on ARCHER2
 
@@ -72,8 +61,7 @@ including:
   - Interactively on the login nodes
   - Interactively on compute nodes
   - As serial processes within a non-interactive batch script
-  - As parallel processes within a non-interactive batch script (not yet
-    documented)
+  - As parallel processes within a non-interactive batch script
 
 We provide information on each of these scenarios (apart from the
 parallel use where we are still preparing the documentation) below.
@@ -82,7 +70,7 @@ you can use them.
 
 ### Getting existing images onto ARCHER2
 
-Singularity images are simply files, so, if you already have an image
+Singularity images are files, so, if you already have an image
 file, you can use `scp` to copy the file to ARCHER2 as you would with
 any other file.
 
@@ -90,10 +78,9 @@ If you wish to get a file from one of the container image repositories
 then Singularity allows you to do this from ARCHER2 itself.
 
 For example, to retrieve an image from SingularityHub on Cirrus we can
-simply issue a Singularity command to pull the
-    image.
+simply issue a Singularity command to pull the image.
 
-    [user@cirrus-login1 ~]$ singularity pull hello-world.sif shub://vsoch/hello-world
+    [user@archer2-login0 ~]$ singularity pull hello-world.sif shub://vsoch/hello-world
 
 The image located at the `shub` URI is written to a Singularity Image
 File (SIF) called `hello-world.sif`.
@@ -111,7 +98,7 @@ command. Using the image we built in the example above:
 
 Within a Singularity image your home directory will be available. The
 directory with centrally-installed software (`/lustre/sw`) is also
-available in images by default. Note that the `module` command will not
+available in images by default. !!! note that the `module` command will not
 work in images unless you have installed the required software and
 configured the environment correctly; we describe how to do this below.
 
@@ -130,31 +117,29 @@ difference is that you have to submit an interactive serial job to get
 interactive access to the compute node first.
 
 For example, to reserve a full node for you to work on interactively you
-would
-    use:
+would use:
 
-    [user@archer2-login0 ~]$ qsub -IVl select=1:ncpus=36,walltime=0:20:0,place=scatter:excl -A t01
-    qsub: waiting for job 234192.indy2-login0 to start
+    auser@uan01:/work/t01/t01/auser> srun --nodes=1 --exclusive --time=00:20:00 --account=[] \
+                   --partition=standard --qos=standard --pty /bin/bash
     
     ...wait until job starts...
     
-    qsub: job 234192.indy2-login0 ready
-    
-    [user@r1i2n13 ~]$
+    auser@nid00001:/work/t01/t01/auser>
 
 Note that the prompt has changed to show you are on a compute node. Now
 you can use the image in the same way as on the login node.
 
-    [user@r1i2n13 ~]$ singularity shell lolcow.simg
+    auser@nid00001:/work/t01/t01/auser> singularity shell lolcow.simg
     Singularity: Invoking an interactive shell within container...
     
     Singularity lolcow.simg:~> exit
     exit
-    [user@r1i2n13 ~]$ exit
-    [user@archer2-login0 ~]$
+    auser@nid00001:/work/t01/t01/auser> exit
+    auser@uan01:/work/t01/t01/auser>
 
-Note how we used `exit` to leave the interactive image shell and then
-`exit` again to leave the interactive job on the compute node.
+!!! note
+    We used `exit` to leave the interactive image shell and then
+    `exit` again to leave the interactive job on the compute node.
 
 ### Serial processes within a non-interactive batch script
 
@@ -172,15 +157,14 @@ ARCHER2 login node would be as follows.
     
     # Slurm job options (name, compute nodes, job time)
     
-    #SBATCH -J simgtest
-    #SBATCH -o simgtest.o%j
-    #SBATCH -e simgtest.o%j
+    #SBATCH --job-name=simgtest
     #SBATCH --nodes=1
-    #SBATCH --ntasks=1
+    #SBATCH --ntasks-per-node=1
+    #SBATCH --cpus-per-task=1
     #SBATCH --time=00:10:00
     
-    #SBATCH --account= [budget code]
-    #SBATCH --partition= standard
+    #SBATCH --account=[budget code]
+    #SBATCH --partition=standard
     #SBATCH --qos=standard
     
     # Setup the batch environment
@@ -190,7 +174,7 @@ ARCHER2 login node would be as follows.
     singularity run $HOME/lolcow.simg
 
 You submit this in the usual way and the standard output and error
-should be written to `simgtest.o...`, where the output filename ends
+should be written to `slurm-...`, where the output filename ends
 with the job number.
 
 ## Creating Your Own Singularity Images
@@ -232,48 +216,4 @@ directly, see:
   - [Installing Singularity on
     Linux](https://www.sylabs.io/guides/2.6/user-guide/installation.html#install-on-linux)
 
-### Singularity Recipes to Access modules on ARCHER2
 
-You may want your custom image to be able to access the modules
-environment on ARCHER2 so you can make use of custom software that you
-cannot access elsewhere. We demonstrate how to do this for a CentOS 7
-image but the steps are easily translated for other flavours of Linux.
-
-For the ARCHER2 modules to be available in your Singularity container
-you need to ensure that the `environment-modules` package is installed
-in your image.
-
-In addition, when you use the container you must invoke access as a
-login shell to have access to the module commands.
-
-Here is an example recipe file to build a CentOS 7 image with access to
-TCL modules alread installed on ARCHER2:
-
-    BootStrap: docker
-    From: centos:centos7
-    
-    %post
-        yum update -y
-        yum install environment-modules -y
-
-If we save this recipe to a file called `archer2-mods.def` then we can
-use the following command to build this image (remember this command
-must be run on a system where you have root access, not
-    ARCHER2):
-
-    me@my-system:~> sudo singularity build archer2-mods.simg archer2-mods.def
-
-The resulting image file (`archer2-mods.simg`) can then be compied to
-ARCHER2 using scp.
-
-When you use the image interactively on ARCHER2 you must start with a
-login shell,
-    i.e.:
-
-    [user@archer2-login0 ~]$ singularity exec archer2-mods.simg /bin/bash --login
-    Singularity> module avail intel-compilers
-    
-    ------------------------- /lustre/sw/modulefiles ---------------------
-    intel-compilers-16/16.0.2.181
-    intel-compilers-16/16.0.3.210(default)
-    intel-compilers-17/17.0.2.174(default)
