@@ -71,7 +71,8 @@ nav:
     - "Overview": software-libraries/overview.md
     - "HPE Cray LibSci: BLAS, LAPACK, ScaLAPACK": software-libraries/libsci.md
     - "FFTW": software-libraries/fftw.md
-    - "HDF5": sfotware-libraries/hdf5.md
+    - "HDF5": software-libraries/hdf5.md
+    - "NetCDF": software-libraries/netcdf.md
   - "Data Analysis and Tools": research-software/data-tools/overview.md
 
 
