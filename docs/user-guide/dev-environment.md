@@ -1,17 +1,8 @@
 # Application development environment
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 ## What's available
 
@@ -93,7 +84,7 @@ ARCHER2 supports common revision control software such as `git`.
 Standard GNU autoconf tools are available, along with `make` (which is
 GNU Make). Versions of `cmake` are available.
 
-Note that some of these tools are part of the system software, and
+!!! note that some of these tools are part of the system software, and
 typically reside in `/usr/bin`, while others are provided as part of the
 module system. Some tools may be available in different versions via
 both `/usr/bin` and via the module system.
@@ -101,54 +92,15 @@ both `/usr/bin` and via the module system.
 ## Compilation environment
 
 There are three different compiler environments available on ARCHER2:
-AMD, Cray, and GNU. The current compiler suite is selected via the
+AMD (AOCC), Cray (CCE), and GNU (GCC). The current compiler suite is selected via the
 programming environment, while the specific compiler versions are
 determined by the relevant compiler module. A summary is:
 
-<table>
-<thead>
-<tr class="header">
-<th>PrgEnv module</th>
-<th>Compiler Suite</th>
-<th>Compiler module</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><blockquote>
-<p><code>PrgEnv-aocc</code></p>
-</blockquote></td>
-<td><blockquote>
-<p>AMD Optimising C/C++ Compiler</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>aocc</code></p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p><code>PrgEnv-cray</code></p>
-</blockquote></td>
-<td><blockquote>
-<p>Cray Compiler Environment</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>cce</code></p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><blockquote>
-<p><code>PrgEnv-gnu</code></p>
-</blockquote></td>
-<td><blockquote>
-<p>Gnu Compiler Collection</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>gcc</code></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+| Suite name | Module | Programming environment collection |
+| ---------- | ------ | ---------------------------------- |
+| CCE        | `cce`  | `PrgEnv-cray`                      |
+| GCC        | `gcc`  | `PrgEnv-gnu`                       |
+| AOCC       | `aocc` | `PrgEnv-aocc`                      |
 
 For example, at login, the default set of modules are:
 
@@ -193,19 +145,10 @@ be used via the appropriate module. Other common MPI compiler wrappers
 e.g., `mpicc` should also be replaced by the relevant wrapper `cc`
 (`mpicc` etc are not available).
 
-<div class="important">
-
-<div class="admonition-title">
-
-Important
-
-</div>
-
-Always use the compiler wrappers `cc`, `CC`, and/or `ftn` and not a
-specific compiler invocation. This will ensure consistent compile/link
-time behaviour.
-
-</div>
+!!! important
+    Always use the compiler wrappers `cc`, `CC`, and/or `ftn` and not a
+    specific compiler invocation. This will ensure consistent compile/link
+    time behaviour.
 
 ### Compiler man pages and help
 
@@ -215,36 +158,30 @@ standard `man` pages. The `man` page for the compiler wrappers is common
 to all programming environments, while the `man` page for individual
 compilers depends on the currently loaded programming environment. The
 following table summarises options for obtaining information on the
-compiler and compiler
-options:
+compiler and compile options:
 
-+----------+------------------------+-------------------+---------------------+----------+---------+
-| PrgEnv   | Compiler Wrapper       | Compiler          | Compiler options    | man page | summary |
-+----------+---------+--------------+-------------------+---------------------+----------+---------+
-| AOCC     | TBC | `clang --help` | +----------+ |
-+-------------------+---------------------+ | Cray | C | `man cc` | `man
-craycc` | `clang --help` | +----------+ |
-+-------------------+---------------------+ | Gnu | | | `man gcc` | `gcc
---help` |
-+----------+---------+--------------+-------------------+---------------------+
-| AOCC | | | TBC | `clang++ --help` | +----------+ |
-+-------------------+---------------------+ | Cray | C++ | `man CC` |
-`man crayCC` | `clang++ --help` | +----------+ |
-+-------------------+---------------------+ | Gnu | | | `man g++` | `g++
---help` |
-+----------+---------+--------------+-------------------+---------------------+
-| AOCC | | | TBC | `flang --help` | +----------+ |
-+-------------------+---------------------+ | Cray | Fortran | `man ftn`
-| `man crayftn` +----------+ |
-+-------------------+---------------------+ | Gnu | | | `man gfortran`
-+----------+---------+--------------+-------------------+---------------------+
+| Compiler suite | C            | C++          | Fortran        |
+| -------------- | ------------ | ------------ | -------------- |
+| Cray           | `man craycc` | `man crayCC` | `man crayftn`  |
+| GNU            | `man gcc`    | `man g++`    | `man gfortran` |
+| Wrappers       | `man cc`     | `man CC`     | `man ftn`      |
 
-Note that Cray C/C++ is based on a clang front end and therefore
-supports similar options to clang/gcc (`man clang` is in fact equivalent
-to `man craycc`). Note that `clang --help` will produce a full summary
-of options with Cray-specific options marked "Cray". The `craycc` man
-page concentrates on these Cray extensions to the `clang` front end and
-does not provide an exhaustive description of all `clang` options.
+!!! tip
+    You can also pass the `--help` option to any of the compilers or
+    wrappers to get a summary of how to use them.
+
+!!! tip
+    There are no `man` pages for the AOCC compilers at the moment.
+
+!!! tip
+    Cray C/C++ is based on Clang and therefore
+    supports similar options to clang/gcc (`man clang` is in fact equivalent
+    to `man craycc`). `clang --help` will produce a full summary
+    of options with Cray-specific options marked "Cray". The `craycc` man
+    page concentrates on these Cray extensions to the `clang` front end and
+    does not provide an exhaustive description of all `clang` options.
+    Cray Fortran **is not** based on Flang and so takes different options
+    from flang/gfortran.
 
 ### Dynamic Linking
 
@@ -277,17 +214,8 @@ Fortran, the recommended starting point would be Cray. The following
 sections provide further details of the different programming
 environments.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Intel compilers are not available on ARCHER2.
-
-</div>
+!!! warning
+    Intel compilers are not available on ARCHER2.
 
 ### AMD Optimizing C/C++ Compiler (AOCC)
 
@@ -299,17 +227,8 @@ Switch the the AOCC programming environment via
 
     $ module restore PrgEnv-aocc
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Further details on AOCC will appear here as they become available.
-
-</div>
+!!! note
+    Further details on AOCC will appear here as they become available.
 
 #### AOCC reference material
 
@@ -340,38 +259,55 @@ When using the compiler wrappers `cc` or `CC`, some of the following
 options may be
 useful:
 
-|                                                                       |
-| --------------------------------------------------------------------- |
-| Language, Warning, Debugging options                                  |
-| Option | Comment                                                      |
+Language, warning, Debugging options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-std=<standard>` | Default is `-std=gnu11` (`gnu++14` for C++) \[1\] |
-| Performance options                                                   |
+
+
+Performance options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-Ofast` | Optimisation levels: -O0, -O1, -O2, -O3, -Ofast            |
 | `-ffp=level` | Floating point maths optimisations levels 0-4 \[2\]    |
 | `-flto` | Link time optimisation                                      |
-| Miscellaneous options                                                 |
+
+
+Miscellaneous options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-fopenmp` | Compile OpenMP (default is off)                          |
 | `-v` | Display verbose output from compiler stages                    |
 
-Notes:
-
-1.  Option `-std=gnu11` gives `c11` plus GNU extensions (likewise
-    `c++14` plus GNU extensions). See
-    <https://gcc.gnu.org/onlinedocs/gcc-4.8.2/gcc/C-Extensions.html>
-2.  Option `-ffp=3` is implied by `-Ofast` or `-ffast-math`
+!!! notes
+    1.  Option `-std=gnu11` gives `c11` plus GNU extensions (likewise
+        `c++14` plus GNU extensions). See
+        <https://gcc.gnu.org/onlinedocs/gcc-4.8.2/gcc/C-Extensions.html>
+    2.  Option `-ffp=3` is implied by `-Ofast` or `-ffast-math`
 
 #### Useful CCE Fortran options
 
-|                                                                   |
-| ----------------------------------------------------------------- |
-| Language, Warning, Debugging options                              |
-| Option | Comment                                                  |
+Language, Warning, Debugging options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-m <level>` | Message level (default `-m 3` errors and warnings) |
-| Performance options                                               |
+
+Performance options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-O <level>` | Optimisation levels: -O0 to -O3 (default -O2)      |
 | `-h fp<level>` | Floating point maths optimisations levels 0-3    |
 | `-h ipa` | Inter-procedural analysis                              |
-| Miscellaneous options                                             |
+
+Miscellaneous options:
+
+| Option | Comment |  
+| ------ | ------- |
 | `-h omp` | Compile OpenMP (default is `-hnoomp`)                  |
 | `-v` | Display verbose output from compiler stages                |
 
@@ -385,90 +321,39 @@ programming environment:
 
     $ module restore PrgEnv-gnu
 
-<div class="warning">
+!!! bug
+    The `gcc/8.1.0` module is available on ARCHER2 but cannot be used as the
+    supporting scientific and system libraries are not available. You should
+    **not** use this version of GCC.
 
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The `gcc/8.1.0` module is available on ARCHER2 but cannot be used as the
-supporting scientific and system libraries are not available. You should
-**not** use this version of GCC.
-
-</div>
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-If you want to use GCC version 10 or greater to compile Fortran code,
-you **must** add the `-fallow-argument-mismatch` option when compiling
-otherwise you will see compile errors associated with MPI functions.
-
-</div>
+!!! warning
+    If you want to use GCC version 10 or greater to compile Fortran code,
+    you **must** add the `-fallow-argument-mismatch` option when compiling
+    otherwise you will see compile errors associated with MPI functions.
 
 #### Useful Gnu Fortran options
 
-<table>
-<thead>
-<tr class="header">
-<th>Option</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>-std=&lt;standard&gt;</code></td>
-<td><blockquote>
-<p>Default is <code>gnu</code></p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><code>-fallow-argument-mismatch</code></td>
-<td><blockquote>
-<p>Allow mismatched procedure arguments. This argument is required for compiling MPI Fortran code with GCC version 10 or greater</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><code>-fbounds-check</code></td>
-<td><blockquote>
-<p>Use runtime checking of array indices</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><code>-fopenmp</code></td>
-<td><blockquote>
-<p>Compile OpenMP (default is no OpenMP)</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><code>-v</code></td>
-<td><blockquote>
-<p>Display verbose output from compiler stages</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+| Option | Comment |  
+| ------ | ------- |
+| `-std=<standard>` |	Default is gnu |
+| `-fallow-argument-mismatch` | Allow mismatched procedure arguments. This argument is required for compiling MPI Fortran code with GCC version 10 or greater |
+| `-fbounds-check` | Use runtime checking of array indices |
+| `-fopenmp` | Compile OpenMP (default is no OpenMP) |
+| `-v` | Display verbose output from compiler stages |
 
-Notes:
+!!! tip
+    The `standard` in `-std` may be one of `f95` `f2003`, `f2008` or
+    `f2018`. The default option `-std=gnu` is the latest Fortran standard
+    plus gnu extensions.
 
-1\. The `standard` in `-std` may be one of `f95` `f2003`, `f2008` or
-`f2018`. The default option `-std=gnu` is the latest Fortran standard
-plus gnu extensions.
-
-2\. Past versions of `gfortran` have allowed mismatched arguments to
-external procedures (e.g., where an explicit interface is not
-available). This is often the case for MPI routines where arrays of
-different types are passed to `MPI_Send()` and so on. This will now
-generate an error as not standard conforming. Use
-`-fallow-argument-mismatch` to reduce the error to a warning. The same
-effect may be acheived via `-std=legacy`.
+!!! warning
+    Past versions of `gfortran` have allowed mismatched arguments to
+    external procedures (e.g., where an explicit interface is not
+    available). This is often the case for MPI routines where arrays of
+    different types are passed to `MPI_Send()` and so on. This will now
+    generate an error as not standard conforming. Use
+    `-fallow-argument-mismatch` to reduce the error to a warning. The same
+    effect may be achieved via `-std=legacy`.
 
 #### Reference material
 
@@ -480,25 +365,14 @@ effect may be acheived via `-std=legacy`.
 
 ## Message passing interface (MPI)
 
-### MPICH
+### HPE Cray MPICH
 
-HPE Cray provide as standard an MPICH implementation of the message
+HPE Cray provide, as standard, an MPICH implementation of the message
 passing interface which is specifically optimised for the ARCHER2
 network. The current implementation supports MPI standard version 3.1.
-This implementation should be used wherever possible.
 
-Useful environment variables associated with MPICH will be documented
-here.
-
-ABI compatibility. This may be useful in cases where a source
-distribution is not available.
-
-#### MPI Resource limits
-
-Some common resource limits e.g., number of communicators, number of
-message tags, will be documented here.
-
-#### Fortran and the mpi module
+The HPE Cray MPICH implementation is linked into software by default when
+compiling using the standard wrapper scripts: `cc`, `CC` and `ftn`.
 
 #### MPI reference material
 
@@ -509,167 +383,43 @@ MPI standard documents: <https://www.mpi-forum.org/docs/>
 Linking to libraries is performed dynamically on ARCHER2. One can use
 the `-craype-verbose` flag to the compiler wrapper to check exactly what
 linker arguments are invoked. The compiler wrapper scripts encode the
-paths to the programming environment system libraries using the
-"runpath". This ensures that the executable can find the correct runtime
+paths to the programming environment system libraries using RUNPATH.
+This ensures that the executable can find the correct runtime
 libraries without the matching software modules loaded.
 
-The library runpath associated with an executable can be inspected via,
+The library RUNPATH associated with an executable can be inspected via,
 e.g.,
 
     $ readelf -d ./a.out
+
+(swap `a.out` for the name of the executable you are querying).
 
 ### Commonly used libraries
 
 Modules with names prefixed by `cray-` are provided by HPE Cray, and are
 supported to be consistent with any of the programming environments and
 associated compilers. These modules should be the first choice for
-access to the following libraries.
+access to software libraries if available.
 
-#### HPE Cray LibSci
+!!! tip
+    More information on the different software libraries on ARCHER2 can
+    be found in the [Software libraries](../software-libraries/overview.md)
+    section of the user guide.
 
-<table>
-<thead>
-<tr class="header">
-<th>Library</th>
-<th>Module</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>BLAS, LAPACK, ...</td>
-<td><blockquote>
-<p><code>module load cray-libsci</code></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+## Build instructions for software on ARCHER2
 
-Cray scientific libraries, available for all compiler choices provides
-access to the Fortran [BLAS](http://www.netlib.org/blas/) and
-[LAPACK](http://www.netlib.org/lapack/) interface for basic linear
-algebra, the corresponding C interfaces
-[CBLAS](http://www.netlib.org/blas/#_cblas) and
-[LAPACKE](https://www.netlib.org/lapack/lapacke.html), and
-[BLACS](https://www.netlib.org/blacs/) and
-[ScaLAPACK](http://www.netlib.org/scalapack/) for parallel linear
-algebra. Type `man intro_libsci` for further details.
+The ARCHER2 CSE team at [EPCC](https://www.epcc.ed.ac.uk) and other contributors
+provide build configurations ando instructions for a range of research
+software, software libraries and tools on a variety of HPC systems (including
+ARCHER2) in a public Github repository. See:
 
-#### FFTW
+   - [Build instructions repository](https://www.github.com/HPC-UK/build-instructions)
 
-<table>
-<thead>
-<tr class="header">
-<th>Library</th>
-<th>Module</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>FFTW</td>
-<td><blockquote>
-<p><code>module load cray-fftw</code></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+The repository always welcomes contributions from the ARCHER2 user community.
 
-[FFTW](http://www.fftw.org) provides Fast Fourier Transforms, and is
-available in version 3 only.
+## Support for building software on ARCHER2
 
-#### HDF5
-
-<table>
-<thead>
-<tr class="header">
-<th>Library</th>
-<th>Module</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><blockquote>
-<p>HDF5</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>module load cray-hdf5</code></p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>HDF5 Paralel</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>module load cray-hdf5-parallel</code></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-Hierarchical Data Format
-[HDF5](https://portal.hdfgroup.org/display/HDF5/HDF5) is available in
-serial and parallel versions.
-
-#### NetCDF
-
-<table>
-<thead>
-<tr class="header">
-<th>Library</th>
-<th>Module</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><blockquote>
-<p>NetCDF</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>module load cray-netcdf</code></p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>NetCDF + HDF5</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>module load cray-netcdf-hdf5parallel</code></p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><blockquote>
-<p>PnetCDF</p>
-</blockquote></td>
-<td><blockquote>
-<p><code>module load cray-parallel-netcdf</code></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-Network Common Data Form
-[NetCDF](https://www.unidata.ucar.edu/software/netcdf/), and parallel
-NetCDF (usually referred to as
-[PnetCDF](https://parallel-netcdf.github.io/wiki/Documentation.html))
-are available.
-
-A full description of the relationship between various HDF5 and NetCDF
-options will appear here.
-
-#### Reference material
-
-  - HDF5  
-    <https://portal.hdfgroup.org/display/HDF5/HDF5>
-
-  - NetCDF  
-    <https://www.unidata.ucar.edu/software/netcdf/>
-
-  - PnetCDF  
-    <https://parallel-netcdf.github.io/wiki/Documentation.html>
-
-## Building standard packages
-
-The ARCHER2 team provide build configurations or instructions for a
-number of standard libraries and software packages. Users wanting
-particular versions of public packages, particularly development
-versions which are not available centrally, are encouraged to try the
-build configuration and consult the Service Desk if there are problems.
+If you run into issues building software on ARCHER2 or the software you
+require is not available then please contact the
+[ARCHER2 Service Desk](https://www.archer2.ac.uk/support-access/servicedesk.html)
+with any questions you have.

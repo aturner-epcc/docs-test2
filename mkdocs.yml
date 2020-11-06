@@ -48,6 +48,7 @@ nav:
     - "Profiling": user-guide/profile.md
     - "Performance tuning": user-guide/tuning.md
   - "Research Software":
+    - "Overview": research-software/overview.md
     - "CASTEP": research-software/castep/castep.md
     - "Chemshell": research-software/chemshell/chemshell.md
     - "Code_Saturne": research-software/code-saturne/code-saturne.md
@@ -66,7 +67,11 @@ nav:
     - "OpenFOAM": research-software/openfoam/openfoam.md
     - "Quantum Espresso": research-software/qe/qe.md
     - "VASP": research-software/vasp/vasp.md
-  - "Software Libraries": research-software/software-libraries/overview.md
+  - "Software Libraries":
+    - "Overview": software-libraries/overview.md
+    - "HPE Cray LibSci: BLAS, LAPACK, ScaLAPACK": software-libraries/libsci.md
+    - "FFTW": software-libraries/fftw.md
+    - "HDF5": sfotware-libraries/hdf5.md
   - "Data Analysis and Tools": research-software/data-tools/overview.md
 
 
