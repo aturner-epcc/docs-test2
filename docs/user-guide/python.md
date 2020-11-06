@@ -9,23 +9,14 @@ used modules. If you wish to install additional Python modules, we
 recommend that you use the `pip` command **after** loading the
 `cray-python` module. This is described in more detail below.
 
-<div class="note">
+!!! note
+    When you log onto ARCHER2, no Python module is loaded by default. You
+    will generally need to load the `cray-python` module to access the
+    functionality described below. Running `python` without loading a module
+    first will result in your using the operating system default Python
+    which is likely not what you intend.
 
-<div class="admonition-title">
-
-Note
-
-</div>
-
-When you log onto ARCHER2, no Python module is loaded by default. You
-will generally need to load the `cray-python` module to access the
-functionality described below. Running `python` without loading a module
-first will result in your using the operating system default Python
-which is likely not what you intend.
-
-</div>
-
-HPE Cray Python distribution ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## HPE Cray Python distribution
 
 The recommended way to use Python on ARCHER2 is to use the HPE Cray
 Python distribution.
@@ -43,18 +34,9 @@ or in a submission script) using:
 
     module load cray-python
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-The HPE Cray Python distribution provides Python 3. There is no Python 2
-version as Python 2 is now deprecated.
-
-</div>
+!!! tip
+    The HPE Cray Python distribution provides Python 3. There is no Python 2
+    version as Python 2 is now deprecated.
 
 ## Adding your own packages
 
@@ -83,14 +65,14 @@ done using:
 
     pip install --user <package_name>
 
-This uses the "-\\-user" flag to ensure the packages are installed in
+This uses the `--user` flag to ensure the packages are installed in
 your user directory.
 
 We recommend that you use the `pipenv` and/or `virtualenv` packages to
 manage your Python environments. For information on how to do this see:
 
->   - [Pipenv and Virtual
->     Environments](https://docs.python-guide.org/dev/virtualenvs/)
+   - [Pipenv and Virtual
+     Environments](https://docs.python-guide.org/dev/virtualenvs/)
 
 # Running Python on the compute nodes
 
@@ -126,10 +108,10 @@ variety of scenarios of using Python on the ARCHER2 compute nodes.
 Programmes that have been parallelised with mpi4py can be run on
 multiple processors on ARCHER2. A sample submission script is given
 below. The primary difference from the Python submission script in the
-previous section is that we must run the programme using `srun python
-my_prog.py` instead of `python my_prog,py`. Failing to do so will cause
-a segmentation fault in your programme when it reaches the line `from
-mpi4py import MPI`.
+previous section is that we must run the programme using
+`srun python my_prog.py` instead of `python my_prog,py`. Failing to do so will cause
+a segmentation fault in your programme when it reaches the line
+`from mpi4py import MPI`.
 
     #!/bin/bash --login
     # Slurm job options (job-name, compute nodes, job time)
