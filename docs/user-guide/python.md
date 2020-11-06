@@ -74,12 +74,12 @@ manage your Python environments. For information on how to do this see:
    - [Pipenv and Virtual
      Environments](https://docs.python-guide.org/dev/virtualenvs/)
 
-# Running Python on the compute nodes
+## Running Python on the compute nodes
 
 In this section we provide example Python job submission scripts for a
 variety of scenarios of using Python on the ARCHER2 compute nodes.
 
-## Example serial Python submission script
+### Example serial Python submission script
 
     #!/bin/bash --login
     
@@ -103,7 +103,7 @@ variety of scenarios of using Python on the ARCHER2 compute nodes.
     # Run your Python progamme
     python python_test.py
 
-## mpi4py
+### Example mpi4py job submission script
 
 Programmes that have been parallelised with mpi4py can be run on
 multiple processors on ARCHER2. A sample submission script is given
