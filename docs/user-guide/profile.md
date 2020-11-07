@@ -72,8 +72,7 @@ then be loaded for further experimentation.
 
 ### Further help
 
-  - [CrayPat-lite User
-    Guide](https://pubs.cray.com/bundle/Cray_Performance_Measurement_and_Analysis_Tools_Installation_Guide_632_S-2474/page/Use_CrayPat_CrayPat-lite_Apprentice2_or_Reveal.html)
+  - [CrayPat-lite User Guide](https://pubs.cray.com/bundle/Cray_Performance_Measurement_and_Analysis_Tools_Installation_Guide_632_S-2474/page/Use_CrayPat_CrayPat-lite_Apprentice2_or_Reveal.html)
 
 ## CrayPat
 
@@ -96,11 +95,11 @@ profiling for a representative length of time.
 
 1.  Ensure the `perftools-base` module is loaded
 
-    module load perftools-base
+    `module load perftools-base`
 
 2.  Load `perftools` module
 
-    module load perftools
+    `module load perftools`
 
 3.  Compile your code in the standard way always using the Cray compiler
     wrappers (ftn, cc and CC). Object files need to be made available to
@@ -108,14 +107,16 @@ profiling for a representative length of time.
     or tracing, this means that compile and link stage should be
     separated by using the `-c` compile flag.
 
-    [user@archer2]$ cc -h std=c99 -c jacobi.c
-    [user@archer2]$ cc jacobi.o -o jacobi 
+    ```
+    auser@uan01:/work/t01/t01/auser> cc -h std=c99 -c jacobi.c
+    auser@uan01:/work/t01/t01/auser> cc jacobi.o -o jacobi 
+    ```
 
 4.  Instrument your application To instrument then the binary, run the
     `pat_build` command. This will generate a new binary with `+pat`
     appended to the end (e.g. `jacobi+pat`)
 
-    [user@archer2]$ pat_build jacobi
+    `auser@uan01:/work/t01/t01/auser> pat_build jacobi`
 
 5.  Run the new executable with `+pat` appended as you would with the
     regular executable. This will generate performance data files with
@@ -176,7 +177,7 @@ predefined report types are
     tracing
     experiments.
 
-    [user@archer2]$ pat_report -O ca+src,load_balance  jacobi+pat+12265-1573s
+    auser@uan01:/work/t01/t01/auser> pat_report -O ca+src,load_balance  jacobi+pat+12265-1573s
 
     Table 1:  Profile by Function and Callers, with Line Numbers (limited entries shown)
 
@@ -218,17 +219,16 @@ predefined report types are
 
 We can produce a focused tracing experiment based on the results from
 the *sampling* experiment using `pat_build` with the `.apa` file
-produced during the
-    sampling.
+produced during the sampling.
 
-    [user@archer2]$ pat_build -O jacobi+pat+12265-1573s/build-options.apa
+    auser@uan01:/work/t01/t01/auser> pat_build -O jacobi+pat+12265-1573s/build-options.apa
 
 This will produce a third binary with extension `+apa`. This binary
 should once again be run on the compute nodes and the name of the
 executable changed to `jacobi+apa`. As with the sampling analysis, a
 report can be produced using `pat_report`.
 
-    [user@archer2]$ pat_report jacobi+apa+13955-1573t
+    auser@uan01:/work/t01/t01/auser> pat_report jacobi+apa+13955-1573t
 
     Table 1:  Profile by Function Group and Function (limited entries shown)
 
@@ -261,13 +261,13 @@ requirements.
 
 The entire program can be traced as a whole using `-w`:
 
-    [user@archer2]$ pat_build -w jacobi
+    auser@uan01:/work/t01/t01/auser> pat_build -w jacobi
 
 Using `-g` a program can be instrumented to trace all function entry
 point references belonging to the trace function group tracegroup (mpi,
 libsci, lapack, scalapack, heap, etc)
 
-    [user@archer2]$ pat_build -w -g mpi jacobi
+    auser@uan01:/work/t01/t01/auser> pat_build -w -g mpi jacobi
 
 ### Dynamically-linked binaries
 
@@ -277,30 +277,25 @@ information for codes that cannot easily be rebuilt. To use `pat_run`:
 
 1.  Load the `perfotools-base` module if it is not already loaded
 
-    module load perftools-base
+    `module load perftools-base`
 
 2.  Run your application normally including the `pat_run` command rigth
     after your `srun`
     options
 
-    srun [srun-options] pat_run [pat_run-options] program [program-options]
+    `srun [srun-options] pat_run [pat_run-options] program [program-options]`
 
 3.  Use `pat_report` to examine any data collected during the execution
     of your application.
 
-    [user@archer2]$ pat_report jacobi+pat+12265-1573s 
+    `auser@uan01:/work/t01/t01/auser> pat_report jacobi+pat+12265-1573s`
 
 Some useful `pat_run` options are:
 
-  - `-w`  
-    Collect data by tracing.
-
-  - `-g`  
-    Trace functions belonging to group names. See the -g option in
+  - `-w`  Collect data by tracing.
+  - `-g`  Trace functions belonging to group names. See the -g option in
     pat\_build(1) for a list of valid tracegroup values.
-
-  - `-r`  
-    Generate a text report upon successful execution.
+  - `-r`  Generate a text report upon successful execution.
 
 ### Further help
 
@@ -341,10 +336,9 @@ not already loaded
 then open the Cray Apprentice2 data (`.ap2`) generated during the
 instrumentation phase
 
-    [user@archer2]$ app2 jacobi+pat+12265-1573s/datafile.ap2
+    auser@uan01:/work/t01/t01/auser> app2 jacobi+pat+12265-1573s/datafile.ap2
 
 ## Hardware Performance Counters
-
 
 !!!note
    Information on hardware counters will be added soon.
