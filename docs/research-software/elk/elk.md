@@ -1,17 +1,8 @@
 # ELK
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 ELK is an all-electron full-potential linearised augmented-plane wave
 (FP-LAPW) code with many advanced features. It was written originally at
@@ -27,108 +18,74 @@ and Training Network.
 
 ELK is freely available to all users on ARCHER2.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Module and version information are pending
-
-</div>
-
 ## Running parallel ELK jobs
 
-### MPI ELK jobs
+### Example MPI ELK job
 
 The following script will run an ELK job on 4 nodes (512 cores).
 
-<div class="warning">
+```
+#!/bin/bash
 
-<div class="admonition-title">
+# Request 512 MPI tasks (4 nodes at 128 tasks per node) with a
+# maximum wall clock time limit of 20 minutes.
 
-Warning
+#SBATCH --job-name=elk_job
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
 
-</div>
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
 
-This script is provisional and requires verification
+# Setup the batch environment
+module load epcc-job-env
 
-</div>
+module load elk
 
-    #!/bin/bash
-    
-    # Request 512 MPI tasks (4 nodes at 128 tasks per node) with a
-    # maximum wall clock time limit of 20 minutes.
-    
-    #SBATCH --job-name=elk_job
-    #SBATCH --nodes=4
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the batch environment
-    module load epcc-job-env
-    
-    module load elk
-    
-    srun --cpu-bind=cores elk 
+srun --cpu-bind=cores elk 
+```
 
-### Mixed MPI/OpenMP ELK jobs
+### Example mixed MPI/OpenMP ELK job
 
 The following script will run an ELK job on 4 nodes, using 8 OpenMP
 threads and 16 MPI tasks per node.
 
-<div class="warning">
+```
+#!/bin/bash
 
-<div class="admonition-title">
+# Request 4 nodes (using 8 threads and 16 MPI tasks per node) with a
+# maximum wall clock time limit of 20 minutes.
+# Replace [budget code] with your account code.
 
-Warning
+#SBATCH --job-name=elk_job
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=16
+#SBATCH --cpus-per-task=8
+#SBATCH --time=00:20:00
 
-</div>
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
 
-This script is provisional and requires verification
+export OMP_NUM_THREADS=8
+# Load the elk module
+# Launch the executable 
+# Input filename elk.in
 
-</div>
+module -s restore /etc/cray-pe.d/PrgEnv-gnu
+module load elk
 
-    #!/bin/bash
-    
-    # Request 4 nodes (using 8 threads and 16 MPI tasks per node) with a
-    # maximum wall clock time limit of 20 minutes.
-    # Replace [budget code] with your account code.
-    
-    #SBATCH --job-name=elk_job
-    #SBATCH --nodes=4
-    #SBATCH --ntasks=64
-    #SBATCH --tasks-per-node=16
-    #SBATCH --cpus-per-task=8
-    #SBATCH --time=00:20:00
-    
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    export OMP_NUM_THREADS=8
-    # Load the elk module
-    # Launch the executable 
-    # Input filename elk.in
-    
-    module -s restore /etc/cray-pe.d/PrgEnv-gnu
-    module load elk
-    
-    srun elk 
-
-## Hints and Tips
+srun elk 
+```
 
 ## Compiling ELK
 
-The latest instructions for building ELK on ARCHER2 may be found in the
-GitHub repositry of build instructions.
+The latest instructions for building ELK on ARCHER2 may be found in
+the GitHub repository of build instructions:
 
-<https://github.com/hpc-uk/build-instructions/tree/main/ELK>
+   - [Build instructions for ELK on
+     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/ELK)

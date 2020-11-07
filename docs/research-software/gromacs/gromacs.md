@@ -1,17 +1,8 @@
 # GROMACS
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 [GROMACS](http://www.gromacs.org/) is a versatile package to perform
 molecular dynamics, i.e. simulate the Newtonian equations of motion for
@@ -32,8 +23,8 @@ non-biological systems, e.g. polymers.
 GROMACS is Open Source software and is freely available to all users.
 Two versions are available:
 
-  - Parallel MPI/OpenMP, single precision: gmx\_mpi
-  - Parallel MPI/OpenMP, double precision: gmx\_mpi\_d
+  - Parallel MPI/OpenMP, single precision: `gmx_mpi`
+  - Parallel MPI/OpenMP, double precision: `gmx_mpi_d`
 
 ## Running parallel GROMACS jobs
 
@@ -42,29 +33,28 @@ Two versions are available:
 The following script will run a GROMACS MD job using 4 nodes (128x4
 cores) with pure MPI.
 
-    #!/bin/bash
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    
-    #SBATCH --job-name=mdrun_test
-    #SBATCH --nodes=4
-    #SBATCH --ntasks=512
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the batch environment
-    module load epcc-job-env
-    
-    module load gromacs
-    
-    export OMP_NUM_THREADS=1 
-    srun --cpu-bind=cores gmx_mpi mdrun -s test_calc.tpr
+```
+#!/bin/bash
+
+#SBATCH --job-name=mdrun_test
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the batch environment
+module load epcc-job-env
+
+module load gromacs
+
+export OMP_NUM_THREADS=1 
+srun --cpu-bind=cores gmx_mpi mdrun -s test_calc.tpr
+```
 
 ### Running hybrid MPI/OpenMP jobs
 
@@ -72,31 +62,32 @@ The following script will run a GROMACS MD job using 4 nodes (128x4
 cores) with 6 MPI processes per node (24 MPI processes in total) and 6
 OpenMP threads per MPI process.
 
-    #!/bin/bash
-    #SBATCH --job-name=mdrun_test
-    #SBATCH --nodes=4
-    #SBATCH --ntasks=64
-    #SBATCH --tasks-per-node=16
-    #SBATCH --cpus-per-task=8
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the batch environment
-    module load epcc-job-env
-    
-    module load gromacs
-    
-    export OMP_NUM_THREADS=8
-    srun --hint=nomultithread --distribution=block:block gmx_mpi mdrun -s test_calc.tpr
+```
+#!/bin/bash
+#SBATCH --job-name=mdrun_test
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=16
+#SBATCH --cpus-per-task=8
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the batch environment
+module load epcc-job-env
+
+module load gromacs
+
+export OMP_NUM_THREADS=8
+srun --hint=nomultithread --distribution=block:block gmx_mpi mdrun -s test_calc.tpr
+```
 
 ## Compiling Gromacs
 
 The latest instructions for building GROMACS on ARCHER2 may be found in
 the GitHub repository of build instructions:
 
->   - [Build instructions for GROMACS on
->     GitHub](https://github.com/hpc-uk/build-instructions/blob/main/GROMACS/ARCHER2_2020.3_gcc10.md)
+   - [Build instructions for GROMACS on
+     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/GROMACS)

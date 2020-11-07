@@ -1,36 +1,22 @@
 # Met Office Unified Model
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 The Met Office Unified Model ("the UM") is a numerical model of the
-atmosphere used for both weather and climate applications.
+atmosphere used for both weather and climate applications. It is often
+rcoupled to the [NEMO](../nemo/nemo.md) ocean model using the OASIS
+couplign framework to provide a full Earth system model.
 
 ## Useful Links
 
   - Met Office Unified Model home page
     <https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model/index>
 
-## Using the Unified Model
+## Using the UM
 
-<div class="warning">
+Information on using the UM is provided by the
+[NCAS Computational Modelling Service (CMS)](http://cms.ncas.ac.uk/).
 
-<div class="admonition-title">
 
-Warning
-
-</div>
-
-Information on the UM is pending.
-
-</div>

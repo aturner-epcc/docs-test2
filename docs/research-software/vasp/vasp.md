@@ -1,17 +1,8 @@
 # VASP
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 The [Vienna Ab initio Simulation Package (VASP)](http://www.vasp.at) is
 a computer program for atomic scale materials modelling, e.g. electronic
@@ -42,10 +33,9 @@ self-consistency cycle.
 
 ## Useful Links
 
->   - [VASP Manual](http://cms.mpi.univie.ac.at/vasp/vasp/vasp.html)
->   - [VASP wiki](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
->   - [VASP
->     Licensing](http://www.vasp.at/index.php/faqs/71-how-can-i-purchase-a-vasp-license)
+   - [VASP Manual](http://cms.mpi.univie.ac.at/vasp/vasp/vasp.html)
+   - [VASP wiki](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
+   - [VASP Licensing](http://www.vasp.at/index.php/faqs/71-how-can-i-purchase-a-vasp-license)
 
 ## Using VASP on ARCHER2
 
@@ -54,23 +44,13 @@ self-consistency cycle.
 If you have a VASP 5 or 6 licence and wish to have access to VASP on
 ARCHER2, please make a request via the SAFE, see:
 
->   - [How to request access to package
->     groups](https://epcced.github.io/safe-docs/safe-for-users/#how-to-request-access-to-a-package-group)
+   - [How to request access to package groups](https://epcced.github.io/safe-docs/safe-for-users/#how-to-request-access-to-a-package-group)
 
 Please have your license details to hand.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Both VASP 5 and VASP 6 are available on ARCHER2. You generally need a
-different licence for each of these versions.
-
-</div>
+!!! note
+    Both VASP 5 and VASP 6 are available on ARCHER2. You generally need a
+    different licence for each of these versions.
 
 ## Running parallel VASP jobs
 
@@ -97,29 +77,31 @@ pseudopotentials for VASP on ARCHER2 at:
 The following script will run a VASP job using 2 nodes (128x2, 256 total
 cores).
 
-    #!/bin/bash
-    
-    # Request 2 nodes (256 MPI tasks at 128 tasks per node) for 20 minutes.   
-    
-    #SBATCH --job-name=VASP_test
-    #SBATCH --nodes=4
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Load the VASP module, avoid any unintentional OpenMP threading by
-    # setting OMP_NUM_THREADS, and launch the code.
-    export OMP_NUM_THREADS=1
-    module load vasp/5
-    srun --cpu-bind=cores vasp_std
+```
+#!/bin/bash
+
+# Request 2 nodes (256 MPI tasks at 128 tasks per node) for 20 minutes.   
+
+#SBATCH --job-name=VASP_test
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
+
+# Load the VASP module, avoid any unintentional OpenMP threading by
+# setting OMP_NUM_THREADS, and launch the code.
+export OMP_NUM_THREADS=1
+module load vasp/5
+srun --cpu-bind=cores vasp_std
+```
 
 ### VASP 6
 
@@ -141,43 +123,36 @@ pseudopotentials for VASP on ARCHER2 at:
 The following script will run a VASP job using 2 nodes (128x2, 256 total
 cores) using only MPI ranks and no OpenMP threading.
 
-<div class="note">
+!!! tip
+    VASP 6 can make use of OpenMP threads in addition to running with pure
+    MPI. We will add notes on performance and use of threading in VASP as
+    information becomes available.
 
-<div class="admonition-title">
+```
+#!/bin/bash
 
-Note
+# Request 2 nodes (256 MPI tasks at 128 tasks per node) for 20 minutes.   
 
-</div>
+#SBATCH --job-name=VASP_test
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
 
-VASP 6 can make use of OpenMP threads in addition to running with pure
-MPI. We will add notes on performance and use of threading in VASP as
-information becomes available.
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
 
-</div>
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
 
-    #!/bin/bash
-    
-    # Request 2 nodes (256 MPI tasks at 128 tasks per node) for 20 minutes.   
-    
-    #SBATCH --job-name=VASP_test
-    #SBATCH --nodes=4
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Load the VASP module, avoid any unintentional OpenMP threading by
-    # setting OMP_NUM_THREADS, and launch the code.
-    export OMP_NUM_THREADS=1
-    module load vasp/6
-    srun --cpu-bind=cores vasp_std
+# Load the VASP module, avoid any unintentional OpenMP threading by
+# setting OMP_NUM_THREADS, and launch the code.
+export OMP_NUM_THREADS=1
+module load vasp/6
+srun --cpu-bind=cores vasp_std
+```
 
 ## Compiling VASP on ARCHER2
 
@@ -185,20 +160,5 @@ If you wish to compile your own version of VASP on ARCHER2 (either VASP
 5 or VASP 6) you can find information on how we compiled the central
 versions in the build instructions GitHub repository. See:
 
->   - [Build instructions for VASP on
->     GitHub](https://github.com/hpc-uk/build-instructions/tree/main/VASP)
+   - [Build instructions for VASP on GitHub](https://github.com/hpc-uk/build-instructions/tree/main/VASP)
 
-## Hints and tips
-
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-We will add information on running VASP efficiently on ARCHER2 as it
-becomes available.
-
-</div>

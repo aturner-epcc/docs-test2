@@ -1,17 +1,8 @@
 # OpenFOAM
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 OpenFOAM is an open-source toolbox for computational fluid dynamics.
 OpenFOAM consists of generic tools to simulate complex physics for a
@@ -41,7 +32,7 @@ OpenFOAM is released under a GPL v3 license and is freely available to
 all users on ARCHER2.
 
 ``` 
-user@uan01:> module avail openfoam
+auser@uan01:> module avail openfoam
 --------------- /work/y07/shared/archer2-modules/modulefiles-cse ----------
 openfoam/com/v2006  openfoam/org/v8.20200901  
 ```
@@ -80,32 +71,34 @@ A typical SLURM job submission script for OpenFOAM is given here. This
 would request 4 nodes to run with 128 MPI tasks per node (a total of 512
 MPI tasks). Each MPI task is allocated one core (`--cpus-per-task=1`).
 
-    #!/bin/bash
-    
-    #SBATCH --nodes=4
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:10:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Load the appropriate modules and source the OpenFOAM bashrc file
-    # The first line makes PrgEnv-gnu available on the back end nodes.
-    
-    module -s restore /etc/cray-pe.d/PrgEnv-gnu
-    module load openfoam/org/v8.20200901
-    
-    source ${FOAM_INSTALL_DIR}/etc/bashrc
-    
-    # Run OpenFOAM work
-    
-    srun --cpu-bind=cores interFoam -parallel
+```
+#!/bin/bash
+
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:10:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
+
+# Load the appropriate modules and source the OpenFOAM bashrc file
+# The first line makes PrgEnv-gnu available on the back end nodes.
+
+module -s restore /etc/cray-pe.d/PrgEnv-gnu
+module load openfoam/org/v8.20200901
+
+source ${FOAM_INSTALL_DIR}/etc/bashrc
+
+# Run OpenFOAM work
+
+srun --cpu-bind=cores interFoam -parallel
+```
 
 ## Compiling OpenFOAM
 

@@ -1,17 +1,8 @@
 # Code\_Saturne
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 Code\_Saturne solves the Navier-Stokes equations for 2D, 2D-axisymmetric
 and 3D flows, steady or unsteady, laminar or turbulent, incompressible
@@ -39,18 +30,15 @@ is freely available to all users on ARCHER2.
 You can load Code\_Saturne 6.0.5 for use by running the following
 command:
 
-    module load code_saturne/6.0.5-gcc10
+  module load code_saturne/6.0.5-gcc10
 
 ## Running parallel Code\_Saturne jobs
-
-Code\_Saturne can exploit multiple nodes on ARCHER2 and will generally
-be run in exclusive mode.
 
 After setting up a case it should be initialized by running the
 following command from the case directory, where *setup.xml* is the
 input file:
 
-    code_saturne run --initialize --param setup.xml
+  code_saturne run --initialize --param setup.xml
 
 This will create a directory named for the current date and time (e.g.
 20201019-1636) inside the RESU directory. Inside the new directory will
@@ -60,8 +48,8 @@ contents shown.
 
 If you wish to alter the existing *run\_solver* script you will need to
 add all the `#SBATCH` options shown to set the job name, size and so on.
-You should also add the two `module` commands, and `srun
---cpu-bind=cores` as well as the `--mpi` option to the line executing
+You should also add the two `module` commands, and
+`srun --cpu-bind=cores` as well as the `--mpi` option to the line executing
 `./cs_solver` to ensure parallel execution on the compute nodes. The
 `export LD_LIBRARY_PATH=...` and `cd` commands are redundant and may be
 retained or removed.
@@ -72,7 +60,7 @@ This script will run an MPI-only Code\_Saturne job over 4 nodes (128 x 4
     #!/bin/bash
     #SBATCH --export=none
     #SBATCH --job-name=CSExample
-    #SBATCH --time=0:20:00
+    #SBATCH --time=0:20:0
     #SBATCH --nodes=4
     #SBATCH --tasks-per-node=128
     #SBATCH --cpus-per-task=1
@@ -95,10 +83,11 @@ This script will run an MPI-only Code\_Saturne job over 4 nodes (128 x 4
 
 The script can then be submitted to the batch system with `sbatch`.
 
-## Hints and tips
-
 ## Compiling Code\_Saturne
 
-Instructions detailing how Code\_Saturne was built on ARCHER2 are
-available at
-<https://github.com/hpc-uk/build-instructions/tree/main/Code_Saturne>
+The latest instructions for building Code\_Saturne on ARCHER2 may be found in
+the GitHub repository of build instructions:
+
+   - [Build instructions for Code\_Saturne on
+     GitHub](https://github.com/hpc-uk/build-instructions/tree/main/Code_Saturne)
+

@@ -1,17 +1,8 @@
 # MITgcm
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 The Massachusetts Institute of Technology General Circulation Model
 (MITgcm) is a numerical model designed for study of the atmosphere,
@@ -86,7 +77,7 @@ each for up to one hour.
     
     # Slurm job options (job-name, compute nodes, job time)
     #SBATCH --job-name=MITgcm-simulation
-    #SBATCH --time=1:00:0
+    #SBATCH --time=1:0:0
     #SBATCH --nodes=2
     #SBATCH --tasks-per-node=128
     #SBATCH --cpus-per-task=1

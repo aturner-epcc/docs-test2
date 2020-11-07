@@ -1,17 +1,8 @@
 # Overview
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 Information on each of the centrally-installed Research Software
 packages, versions available, how to get access, example job submission
@@ -34,27 +25,27 @@ the developers of the package.
 The following sections provide details on access to each of the
 centrally supported packages:
 
-  - `castep/castep`
-  - `code-saturne/code-saturne`
-  - `chemshell/chemshell`
-  - `cp2k/cp2k`
-  - `elk/elk`
-  - `fenics/fenics`
-  - `gromacs/gromacs`
-  - `lammps/lammps`
-  - `mo-unified-model/mo-unified-model`
-  - `mitgcm/mitgcm`
-  - `namd/namd`
-  - `nektar++/nektar++`
-  - `nemo/nemo`
-  - `nwchem/nwchem`
-  - `onetep/onetep`
-  - `openfoam/openfoam`
-  - `qe/qe`
-  - `vasp/vasp`
+    - [CASTEP](research-software/castep/castep.md)
+    - [Chemshell](research-software/chemshell/chemshell.md)
+    - [Code_Saturne](research-software/code-saturne/code-saturne.md)
+    - [CP2K](research-software/cp2k/cp2k.md)
+    - [ELK](research-software/elk/elk.md)
+    - [FEniCS](research-software/fenics/fenics.md)
+    - [GROMACS](research-software/gromacs/gromacs.md)
+    - [LAMMPS](research-software/lammps/lammps.md)
+    - [MITgcm](research-software/mitgcm/mitgcm.md)
+    - [Met Office Unified Model](research-software/mo-unified-model/mo-unified-model.md)
+    - [NAMD](research-software/namd/namd.md)
+    - [Nektar++](research-software/nektarplusplus/nektarplusplus.md)
+    - [NEMO](research-software/nemo/nemo.md)
+    - [NWChem](research-software/nwchem/nwchem.md)
+    - [ONETEP](research-software/onetep/onetep.md)
+    - [OpenFOAM](research-software/openfoam/openfoam.md)
+    - [Quantum Espresso](research-software/qe/qe.md)
+    - [VASP](research-software/vasp/vasp.md)
 
 ### Not on the list?
 
 If the code you are interested in is not in the above list, we may still
 be able to help you install your own version, either individually, or as
-a project. Please contact the Service Desk.
+a project. Please [contact the Service Desk](https://www.archer2.ac.uk/support-access/servicedesk.html).

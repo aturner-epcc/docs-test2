@@ -1,17 +1,8 @@
 # NEKTAR++
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 Nektar++ is a tensor product based finite element package designed to
 allow one to construct efficient classical low polynomial order
@@ -33,20 +24,11 @@ functionality.
 
 ## Using Nektar++ on ARCHER2
 
+!!! warning
+    Nektar++ is not yet available on ARCHER2.
+
 Nektar++ is released under an MIT license and is available to all users
 on ARCHER2.
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Further information on Nektar++ usage is pending.
-
-</div>
 
 ### Where can I get help?
 
@@ -59,14 +41,6 @@ to the Service Desk.
 
 ## Running parallel Nektar++ jobs
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Further information is pending.
-
-</div>
+!!! note
+    We will add information about running Nektar++ and example job submission
+    scripts once the software is available.

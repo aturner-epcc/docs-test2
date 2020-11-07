@@ -1,17 +1,8 @@
 # NEMO
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 NEMO (Nucleus for European Modelling of the Ocean) is a state-of-the-art
 framework for research activities and forecasting services in ocean and
@@ -27,31 +18,14 @@ consortium.
 
 ## Using NEMO on ARCHER2
 
+!!! warning
+    A central install of NEMO is not yet available on ARCHER2.
+
 NEMO is released under a CeCILL license and if freely available to all
 users on ARCHER2.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Further details on NEMO are pending
-
-</div>
-
 ## Running parallel NEMO jobs
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Further details on NEMO are pending
-
-</div>
+!!! note
+    We will add information on running NEMO on ARCHER2 and job submission
+    scripts once the software is available.

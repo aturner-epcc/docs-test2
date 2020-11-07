@@ -1,17 +1,8 @@
 # ChemShell
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+  The ARCHER2 Service is not yet available. This documentation is in
+  development.
 
 ChemShell is a script-based chemistry code focusing on hybrid QM/MM
 calculations with support for standard quantum chemical or force field
@@ -35,44 +26,16 @@ is:
 
 ## Using ChemShell on ARCHER2
 
+!!! warning
+    ChemShell is not yet available on ARCHER2
+
 The python-based version of ChemShell is open-source and is freely
 available to all users on ARCHER2.
 
 The older version of Tcl-based ChemShell requires a license. Users with
 a valid license should request access via the ARCHER2 SAFE.
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The exact version information and module name is pending.
-
-</div>
-
 ## Running parallel ChemShell jobs
 
-### Py-ChemShell
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-Example scripts will be added soon.
-
-</div>
-
-    #!/bin/bash
-
-### Tcl-Chemshell
-
-## Hints and Tips
-
-## Compiling ChemShell
+!!! note  
+    Information on running ChemShell and example scripts will be added soon.

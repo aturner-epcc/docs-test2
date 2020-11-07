@@ -1,17 +1,8 @@
 # Quantum Espresso
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 Quantum Espresso (QE) is an integrated suite of open-source computer
 codes for electronic-structure calculations and materials modeling at
@@ -20,11 +11,9 @@ and pseudopotentials.
 
 ## Useful Links
 
-  - Quantum Espresso home page <http://www.quantum-espresso.org/>
-  - Quantum Espresso [User
-    Guides](http://www.quantum-espresso.org/users-manual/)
-  - Quantum Espresso
-    [Tutorials](http://www.quantum-espresso.org/tutorials/)
+  - [Quantum Espresso home page](http://www.quantum-espresso.org/)
+  - [Quantum Espresso User Guides](http://www.quantum-espresso.org/users-manual/)
+  - [Quantum Espresso Tutorials](http://www.quantum-espresso.org/tutorials/)
 
 ## Using QE on ARCHER2
 
@@ -36,29 +25,31 @@ ARCHER2 users.
 For example, the following script will run a QE `pw.x` job using 4 nodes
 (128x4 cores).
 
-    #!/bin/bash
-    
-    # Request 4 nodes to run a 512 MPI task job with 128 MPI tasks per node.
-    # The maximum walltime limit is set to be 20 minutes.
-    
-    #SBATCH --job-name=qe_test
-    #SBATCH --nodes=4
-    #SBATCH --ntasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Load the relevant Quantum Espresso module
-    module load quantum-espresso
-    
-    srun pw.x < test_calc.in
+```
+#!/bin/bash
+
+# Request 4 nodes to run a 512 MPI task job with 128 MPI tasks per node.
+# The maximum walltime limit is set to be 20 minutes.
+
+#SBATCH --job-name=qe_test
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
+
+# Load the relevant Quantum Espresso module
+module load quantum-espresso
+
+srun pw.x < test_calc.in
+```
 
 ## Hints and tips
 
@@ -75,5 +66,4 @@ directory you wish. This can be done by adding the following line
 The latest instructions for building QE on ARCHER2 can be found in the
 GitHub repository of build instructions:
 
->   - [Build instructions for Quantum
->     Espresso](https://github.com/hpc-uk/build-instructions/blob/main/QuantumEspresso/qe66_archer2_gnu.md)
+   - [Build instructions for Quantum Espresso](https://github.com/hpc-uk/build-instructions/tree/main/QuantumEspressod)

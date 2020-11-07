@@ -1,17 +1,8 @@
 # NWChem
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 NWChem aims to provide its users with computational chemistry tools that
 are scalable both in their ability to treat large scientific
@@ -47,38 +38,40 @@ submitting them to the NWChem github issue tracker
 
 The following script will run a NWChem job using 2 nodes (256 cores) in
 the standard partition. It assumes that the input file is called
-<span class="title-ref">test\_calc.nw</span>.
+`test\_calc.nw`.
 
-    #!/bin/bash
-    
-    # Request 2 nodes with 128 MPI tasks per node for 20 minutes
-    # Replace [budget code] below with your account code,
-    # e.g. '--account=t01'
-    
-    #SBATCH --job-name=CASTEP
-    #SBATCH --nodes=2
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code] 
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the job environment (this module needs to be loaded before any other modules)
-    module load epcc-job-env
-    
-    # Load the NWChem module, avoid any unintentional OpenMP threading by
-    # setting OMP_NUM_THREADS, and launch the code.
-    module load nwchem
-    export OMP_NUM_THREADS=1
-    srun -cpu-bind=cores nwchem test_calc
+```
+#!/bin/bash
+
+# Request 2 nodes with 128 MPI tasks per node for 20 minutes
+# Replace [budget code] below with your account code,
+# e.g. '--account=t01'
+
+#SBATCH --job-name=CASTEP
+#SBATCH --nodes=2
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code] 
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the job environment (this module needs to be loaded before any other modules)
+module load epcc-job-env
+
+# Load the NWChem module, avoid any unintentional OpenMP threading by
+# setting OMP_NUM_THREADS, and launch the code.
+module load nwchem
+export OMP_NUM_THREADS=1
+srun -cpu-bind=cores nwchem test_calc
+```
 
 ## Compiling NWChem
 
 The latest instructions for building NWChem on ARCHER2 may be found in
 the GitHub repository of build instructions:
 
->   - [Build instructions for NWChem on
->     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/NWChem)
+   - [Build instructions for NWChem on
+     GitHub](https://github.com/hpc-uk/build-instructions/tree/master/NWChem)

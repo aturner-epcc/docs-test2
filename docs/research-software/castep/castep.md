@@ -1,8 +1,8 @@
 # CASTEP
 
-!!!warning
-   The ARCHER2 Service is not yet available. This documentation is in
-   development.
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 [CASTEP](http://www.castep.org) is a leading code for calculating the
 properties of materials from first principles. Using density functional
@@ -36,29 +36,30 @@ Please have your license details to hand.
 The following script will run a CASTEP job using 2 nodes (256 cores). it
 assumes that the input files have the file stem `text_calc`.
 
-    #!/bin/bash
-    
-    # Request 2 nodes with 128 MPI tasks per node for 20 minutes
-    #SBATCH --job-name=CASTEP
-    #SBATCH --nodes=2
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    #SBATCH --time=00:20:00
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the batch environment
-    module load epcc-job-env
-    
-    # Load the CASTEP module, avoid any unintentional OpenMP threading by
-    # setting OMP_NUM_THREADS, and launch the code.
-    module load castep
-    export OMP_NUM_THREADS=1
-    srun -cpu-bind=cores castep.mpi test_calc
+```
+#!/bin/bash
 
+# Request 2 nodes with 128 MPI tasks per node for 20 minutes
+#SBATCH --job-name=CASTEP
+#SBATCH --nodes=2
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:20:00
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the batch environment
+module load epcc-job-env
+
+# Load the CASTEP module, avoid any unintentional OpenMP threading by
+# setting OMP_NUM_THREADS, and launch the code.
+module load castep
+export OMP_NUM_THREADS=1
+srun -cpu-bind=cores castep.mpi test_calc
+```
 
 ## Compiling CASTEP
 
