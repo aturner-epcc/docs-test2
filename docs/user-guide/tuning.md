@@ -240,7 +240,7 @@ techniques such as hybrid MPI/OpenMP or single-sided MPI communication
 with put and get, but typically you should be using specialised routines
 such as `MPI_Win_fence` rather than `MPI_Barrier`.
 
-!!! note
+!!! tip
     If you run a performance profiler on your code and it shows a lot of
     time being spent in a collective operation such as `MPI_Allreduce`, this
     is *not necessarily* a sign that the reduction operation itself is the
