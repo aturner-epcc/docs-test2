@@ -1,23 +1,9 @@
 # Profiling
 
-<div class="highlight">
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
-c
-
-</div>
-
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
 
 ## CrayPat-lite
 
@@ -36,24 +22,24 @@ then be loaded for further experimentation.
 
 1.  Ensure the `perftools-base` module is loaded
 
-    module load perftools-base
+    `auser@uan01:/work/t01/t01/auser> module load perftools-base`
 
 2.  Load `perfotools-lite` module
 
-    module load perftools-lite
+    `auser@uan01:/work/t01/t01/auser> module load perftools-lite`
 
 3.  Compile your application normally. An information message from
     CrayPat-lite will appear indicating that the executable has been
     instrumented.
 
-``` 
-[user@archer2]$ cc -h std=c99  -o myapplication.x myapplication.c
-INFO: creating the CrayPat-instrumented executable 'myapplication.x' (lite-samples) ...OK  
-```
+    ``` 
+    auser@uan01:/work/t01/t01/auser> cc -h std=c99  -o myapplication.x myapplication.c
+    INFO: creating the CrayPat-instrumented executable 'myapplication.x' (lite-samples) ...OK  
+    ```
 
-1.  Run the generated executable normally submitting a job.
+4.  Run the generated executable normally submitting a job.
 
-
+    ```
     #!/bin/bash
     
     #SBATCH --job-name=craypat_test
@@ -71,17 +57,18 @@ INFO: creating the CrayPat-instrumented executable 'myapplication.x' (lite-sampl
     
     # Launch the parallel program
     srun mpi_test.x
+    ```
 
-2.  Analyse the data
+5.  Analyse the data
 
-After the job finishes executing, CrayPat-lite output should be printed
-to stdout i.e. at the end of the job's output file generated. A new
-directory will also be created in the directory the run occurred in with
-`.rpt` and `.ap2` files. The `.rpt` files are text files that contain
-the same information printed in the job's output file, the `.ap2` files
-can be used to obtained more detailed information and can be visualized
-with the Cray Apprentice2 tool (for information on using this, please
-take a look at [Cray Apprentice2](#cray-apprentice2)).
+    After the job finishes executing, CrayPat-lite output should be printed
+    to stdout i.e. at the end of the job's output file generated. A new
+    directory will also be created in the directory the run occurred in with
+    `.rpt` and `.ap2` files. The `.rpt` files are text files that contain
+    the same information printed in the job's output file, the `.ap2` files
+    can be used to obtained more detailed information and can be visualized
+    with the Cray Apprentice2 tool (for information on using this, please
+    take a look at [Cray Apprentice2](#cray-apprentice2)).
 
 ### Further help
 
