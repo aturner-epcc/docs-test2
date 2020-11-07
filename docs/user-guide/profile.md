@@ -174,8 +174,9 @@ predefined report types are
     and median times for routines will be displayed. Only available with
     tracing experiments.
   - **mpi\_callers** - Show MPI message statistics. Only available with
-    tracing
-    experiments.
+    tracing experiments.
+
+Example output:
 
     auser@uan01:/work/t01/t01/auser> pat_report -O ca+src,load_balance  jacobi+pat+12265-1573s
 
@@ -226,7 +227,7 @@ produced during the sampling.
 This will produce a third binary with extension `+apa`. This binary
 should once again be run on the compute nodes and the name of the
 executable changed to `jacobi+apa`. As with the sampling analysis, a
-report can be produced using `pat_report`.
+report can be produced using `pat_report`. For example:
 
     auser@uan01:/work/t01/t01/auser> pat_report jacobi+apa+13955-1573t
 
