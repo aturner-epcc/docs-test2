@@ -341,6 +341,6 @@ instrumentation phase
 
 ## Hardware Performance Counters
 
-!!!note
-   Information on hardware counters will be added soon.
+!!! note
+    Information on hardware counters will be added soon.
 

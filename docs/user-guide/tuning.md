@@ -1,17 +1,8 @@
 # Performance tuning
 
-<div class="warning">
-
-<div class="admonition-title">
-
-Warning
-
-</div>
-
-The ARCHER2 Service is not yet available. This documentation is in
-development.
-
-</div>
+!!! warning
+    The ARCHER2 Service is not yet available. This documentation is in
+    development.
 
 ## MPI
 
@@ -31,20 +22,11 @@ scaling very well due to the bespoke communications hardware and
 software, the details of how a program calls MPI can have significant
 effects on achieved performance.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-Many of these tips are actually quite generic and should be beneficial
-to any MPI program; however, they all become much more important when
-running on very large numbers of processes on a machine the size of
-ARCHER2.
-
-</div>
+!!! note
+    Many of these tips are actually quite generic and should be beneficial
+    to any MPI program; however, they all become much more important when
+    running on very large numbers of processes on a machine the size of
+    ARCHER2.
 
 ### Synchronous vs asynchronous communications
 
@@ -130,21 +112,12 @@ The advice for tuning the performance of `MPI_Send` is
   - measure the performance before and after to check that it has
     improved.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-It cannot be stressed strongly enough that although the performance may
-be affected by the value of the eager limit, the functionality of your
-program should be unaffected. If changing the eager limit affects the
-correctness of your program (e.g. whether or not it deadlocks) then
-**you have an incorrect MPI program**.
-
-</div>
+!!! note
+    It cannot be stressed strongly enough that although the performance may
+    be affected by the value of the eager limit, the functionality of your
+    program should be unaffected. If changing the eager limit affects the
+    correctness of your program (e.g. whether or not it deadlocks) then
+    **you have an incorrect MPI program**.
 
 ### Collective operations
 
@@ -267,23 +240,14 @@ techniques such as hybrid MPI/OpenMP or single-sided MPI communication
 with put and get, but typically you should be using specialised routines
 such as `MPI_Win_fence` rather than `MPI_Barrier`.
 
-<div class="note">
-
-<div class="admonition-title">
-
-Note
-
-</div>
-
-If you run a performance profiler on your code and it shows a lot of
-time being spent in a collective operation such as `MPI_Allreduce`, this
-is *not necessarily* a sign that the reduction operation itself is the
-bottleneck. This is often a symptom of *load imbalance*: even if a
-reduction operation is efficiently implemented, it may take a long time
-to complete if the MPI processes do not all call it at the same time.
-`MPI_Allreduce` synchronises across processes so will have to wait for
-all the processes to call it before it can complete. A single slow
-process will therefore adversely impact the performance of your entire
-parallel program.
-
-</div>
+!!! note
+    If you run a performance profiler on your code and it shows a lot of
+    time being spent in a collective operation such as `MPI_Allreduce`, this
+    is *not necessarily* a sign that the reduction operation itself is the
+    bottleneck. This is often a symptom of *load imbalance*: even if a
+    reduction operation is efficiently implemented, it may take a long time
+    to complete if the MPI processes do not all call it at the same time.
+    `MPI_Allreduce` synchronises across processes so will have to wait for
+    all the processes to call it before it can complete. A single slow
+    process will therefore adversely impact the performance of your entire
+    parallel program.
