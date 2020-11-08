@@ -6,7 +6,7 @@
 
 The following debugging tools are available on ARCHER2:
 
-  - gdb4hpc is a command-line debugging tool provided by
+  - [gdb4hpc](#gdb4hpc) is a command-line debugging tool provided by
     HPE Cray. It works similarly to
     [gdb](https://www.gnu.org/software/gdb/), but allows the user to
     debug multiple parallel processes without multiple windows. gdb4hpc
@@ -15,16 +15,17 @@ The following debugging tools are available on ARCHER2:
     focus on specific processes groups to help identify unexpected code
     behavior. (text from
     [ALCF](https://www.alcf.anl.gov/support-center/theta/gdb)).
-  - valgrind4hpc is a parallel memory debugging tool
+  - [valgrind4hpc](#valgrind4hpc) is a parallel memory debugging tool
     that aids in detection of memory leaks and errors in parallel
     applications. It aggregates like errors across processes and threads
     to simply debugging of parallel applications.
-  - ATP provides scalable core file and backtrace analysis when parallel
-    programs crash.
-  - STAT generate merged stack traces for parallel applications.
+  - [STAT](#STAT) generate merged stack traces for parallel applications.
     Also has visualisation tools.
+  - [ATP](#ATP) provides scalable core file and backtrace analysis when parallel
+    programs crash.
   - CCDB Cray Comparative Debugger. Compare two versions of code
-    side-by-side to analyse differences.
+    side-by-side to analyse differences. (Not currently described in this
+    documentation.)
 
 ## gdb4hpc
 
@@ -231,9 +232,9 @@ When you are finished using `gbd4hpc`, simply run:
 
 Do not forget to exit your interactive session.
 
-## Valgrind4hpc
+## valgrind4hpc
 
-Valgrind4hpc is a Valgrind-based debugging tool to aid in the detection
+valgrind4hpc is a Valgrind-based debugging tool to aid in the detection
 of memory leaks and errors in parallel applications. Valgrind4hpc
 aggregates any duplicate messages across ranks to help provide an
 understandable picture of program behavior. Valgrind4hpc manages

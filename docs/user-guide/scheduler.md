@@ -672,7 +672,7 @@ specified.
 ## Best practices for job submission
 
 This guidance is adapted from [the advice provided by
-[NERSC](https://docs.nersc.gov/jobs/best-practices/)
+NERSC](https://docs.nersc.gov/jobs/best-practices/)
 
 ### Time Limits
 

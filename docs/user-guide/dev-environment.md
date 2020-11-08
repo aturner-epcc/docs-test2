@@ -65,7 +65,8 @@ cray-hdf5/1.12.0.0              cray-pmi/6.0.6(default)
 cray-libsci/20.08.1.2(default)  cray-python/3.8.5.0(default)      
 ```
 
-A full discussion of the module system is available in `sw-environment`.
+A full discussion of the module system is available in
+[the Software environment section](sw-environment.md).
 
 A consistent set of modules is loaded on login to the machine (currently
 `PrgEnv-cray`, see below). Developing applications then means selecting
@@ -73,8 +74,8 @@ and loading the appropriate set of modules before starting work.
 
 This section is aimed at code developers and will concentrate on the
 compilation environment and building libraries and executables, and
-specifically parallel executables. Other topics such as `python` and
-`containers` are covered in more detail in separate sections of the
+specifically parallel executables. Other topics such as [Python](python.md) and
+[Containers](containers.md) are covered in more detail in separate sections of the
 documentation.
 
 ## Managing development
@@ -84,10 +85,11 @@ ARCHER2 supports common revision control software such as `git`.
 Standard GNU autoconf tools are available, along with `make` (which is
 GNU Make). Versions of `cmake` are available.
 
-!!! note that some of these tools are part of the system software, and
-typically reside in `/usr/bin`, while others are provided as part of the
-module system. Some tools may be available in different versions via
-both `/usr/bin` and via the module system.
+!!! note
+    Some of these tools are part of the system software, and
+    typically reside in `/usr/bin`, while others are provided as part of the
+    module system. Some tools may be available in different versions via
+    both `/usr/bin` and via the module system.
 
 ## Compilation environment
 
@@ -168,7 +170,8 @@ compiler and compile options:
 
 !!! tip
     You can also pass the `--help` option to any of the compilers or
-    wrappers to get a summary of how to use them.
+    wrappers to get a summary of how to use them. The Cray Fortran
+    compiler uses `ftn --craype-help` to access the help options.
 
 !!! tip
     There are no `man` pages for the AOCC compilers at the moment.
