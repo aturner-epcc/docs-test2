@@ -61,29 +61,31 @@ retained or removed.
 This script will run an MPI-only Code\_Saturne job over 4 nodes (128 x 4
 = 512 cores) for a maximum of 20 minutes.
 
-    #!/bin/bash
-    #SBATCH --export=none
-    #SBATCH --job-name=CSExample
-    #SBATCH --time=0:20:0
-    #SBATCH --nodes=4
-    #SBATCH --tasks-per-node=128
-    #SBATCH --cpus-per-task=1
-    
-    # Replace [budget code] below with your project code (e.g. t01)
-    #SBATCH --account=[budget code]
-    #SBATCH --partition=standard
-    #SBATCH --qos=standard
-    
-    # Setup the batch environment
-    module load epcc-job-env
-    
-    module load code_saturne
-    
-    # Prevent threading.
-    export OMP_NUM_THREADS=1
-    
-    # Run solver.
-    srun --cpu-bind=cores ./cs_solver --mpi $@
+```slurm
+#!/bin/bash
+#SBATCH --export=none
+#SBATCH --job-name=CSExample
+#SBATCH --time=0:20:0
+#SBATCH --nodes=4
+#SBATCH --tasks-per-node=128
+#SBATCH --cpus-per-task=1
+
+# Replace [budget code] below with your project code (e.g. t01)
+#SBATCH --account=[budget code]
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+
+# Setup the batch environment
+module load epcc-job-env
+
+module load code_saturne
+
+# Prevent threading.
+export OMP_NUM_THREADS=1
+
+# Run solver.
+srun --cpu-bind=cores ./cs_solver --mpi $@
+```
 
 The script can then be submitted to the batch system with `sbatch`.
 
