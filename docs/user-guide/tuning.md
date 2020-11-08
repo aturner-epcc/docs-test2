@@ -137,8 +137,8 @@ sends its input to rank 0 where the time will scale as \(P\). This might
 not be significant on your laptop, but even on as few as 1000 processes
 the tree-based algorithm will already be around 100 times faster.
 
-So, the basic advice is \*\*always use a collective routine to implement
-your communications pattern\*\* if at all possible.
+So, the basic advice is **always use a collective routine to implement
+your communications pattern** if at all possible.
 
 In real MPI applications, collective operations are often called on a
 small amount of data, for example a global reduction of a single
