@@ -138,8 +138,10 @@ on ARCHER2.
 
 ARCHER2 Partitions
 
-You can list the active partitions by running `sinfo`. !!! note, you may not
-have access to all the available partitions.
+You can list the active partitions by running `sinfo`.
+
+!!! tip
+    You may not have access to all the available partitions.
 
 ### Quality of Service (QoS)
 
@@ -266,8 +268,10 @@ module system work correctly, batch scripts should contain
 
 **as the first module command in the script** to ensure that the
 environment is set correctly for the job. This will also ensure all
-relevant library paths are set correctly at run time. !!! note `module -s`
-can be used to suppress the associated messages if desired.
+relevant library paths are set correctly at run time.
+
+!!! tip
+    `module -s` can be used to suppress the associated messages if desired.
 
 ## `srun`: Launching parallel jobs
 

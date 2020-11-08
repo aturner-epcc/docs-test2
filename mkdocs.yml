@@ -60,7 +60,7 @@ nav:
     - "MITgcm": research-software/mitgcm/mitgcm.md
     - "Met Office Unified Model": research-software/mo-unified-model/mo-unified-model.md
     - "NAMD": research-software/namd/namd.md
-    - "Nektar++": research-software/nektarpluslus/nektarplusplus.md
+    - "Nektar++": research-software/nektarplusplus/nektarplusplus.md
     - "NEMO": research-software/nemo/nemo.md
     - "NWChem": research-software/nwchem/nwchem.md
     - "ONETEP": research-software/onetep/onetep.md
