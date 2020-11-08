@@ -73,6 +73,6 @@ nav:
     - "FFTW": software-libraries/fftw.md
     - "HDF5": software-libraries/hdf5.md
     - "NetCDF": software-libraries/netcdf.md
-  - "Data Analysis and Tools": research-software/data-tools/overview.md
+  - "Data Analysis and Tools": data-tools/overview.md
 
 

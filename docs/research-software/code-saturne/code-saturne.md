@@ -30,7 +30,9 @@ is freely available to all users on ARCHER2.
 You can load Code\_Saturne 6.0.5 for use by running the following
 command:
 
-  module load code_saturne/6.0.5-gcc10
+```
+module load code_saturne/6.0.5-gcc10
+```
 
 ## Running parallel Code\_Saturne jobs
 
@@ -38,7 +40,9 @@ After setting up a case it should be initialized by running the
 following command from the case directory, where *setup.xml* is the
 input file:
 
-  code_saturne run --initialize --param setup.xml
+```
+code_saturne run --initialize --param setup.xml
+```
 
 This will create a directory named for the current date and time (e.g.
 20201019-1636) inside the RESU directory. Inside the new directory will
